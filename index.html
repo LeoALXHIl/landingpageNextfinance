@@ -4,6 +4,47 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NextFinance — Controle Financeiro que Funciona de Verdade</title>
+
+<!-- SEO META TAGS -->
+<meta name="description" content="Controle seus gastos sem planilha e sem conectar banco. App financeiro gratuito feito no Brasil. Suporte 24h em português. Plano grátis para sempre.">
+<meta name="keywords" content="controle financeiro, app de gastos, planilha financeira, finanças pessoais, app financeiro Brasil, controle de gastos grátis">
+<meta name="author" content="NextFinance">
+<meta name="robots" content="index, follow">
+
+<!-- OPEN GRAPH / FACEBOOK -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nextfinance.app/">
+<meta property="og:title" content="NextFinance — Controle Financeiro que Funciona de Verdade">
+<meta property="og:description" content="Controle seus gastos sem planilha e sem conectar banco. Plano grátis para sempre, suporte 24h em português.">
+<meta property="og:locale" content="pt_BR">
+
+<!-- TWITTER CARD -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NextFinance — Controle Financeiro que Funciona de Verdade">
+<meta name="twitter:description" content="Controle seus gastos sem planilha e sem conectar banco. Plano grátis para sempre.">
+
+<!-- SCHEMA.ORG -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "NextFinance",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "description": "Controle financeiro pessoal sem conexão bancária, feito no Brasil.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "BRL"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "ratingCount": "1200"
+  }
+}
+</script>
+
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -13,6 +54,7 @@
   --greenglow:rgba(0,230,118,.18);--greensoft:rgba(0,230,118,.04);
   --text:#f0f0f0;--muted:#777;--dim:#3a3a3a;--dimmer:#2a2a2a;
   --red:#ff1744;--yellow:#ffd740;--blue:#40c4ff;
+  --wpp:#25d366;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -25,8 +67,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 /* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,52px);background:rgba(6,6,6,.92);backdrop-filter:blur(28px);border-bottom:1px solid var(--border);transition:all .3s;}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.nav-logo img{height:42px;object-fit:contain;filter:drop-shadow(0 0 18px rgba(0,230,118,.6));transition:filter .3s;}
-.nav-logo:hover img{filter:drop-shadow(0 0 28px rgba(0,230,118,.9));}
+.nav-logo svg{height:38px;width:38px;filter:drop-shadow(0 0 18px rgba(0,230,118,.5));transition:filter .3s;}
+.nav-logo:hover svg{filter:drop-shadow(0 0 28px rgba(0,230,118,.9));}
 .nav-logo-text{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--text);letter-spacing:-.02em;}
 .nav-logo-text span{color:var(--green);}
 .nav-links{display:flex;gap:32px;list-style:none;}
@@ -39,6 +81,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;ali
 .btn-g:hover{border-color:var(--green);color:var(--green);}
 .btn-p{padding:9px 24px;border:none;border-radius:8px;background:var(--green);color:#000;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;transition:all .2s;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;box-shadow:0 0 20px rgba(0,230,118,.2);}
 .btn-p:hover{background:var(--green2);transform:translateY(-1px);box-shadow:0 8px 32px rgba(0,230,118,.4);}
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;width:36px;height:36px;background:none;border:1px solid var(--border3);border-radius:8px;cursor:pointer;align-items:center;justify-content:center;padding:0;transition:all .2s;}
+.hamburger:hover{border-color:var(--green);}
+.hamburger span{width:18px;height:2px;background:var(--text);border-radius:2px;transition:all .25s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* MOBILE MENU PANEL */
+.mobile-menu{position:fixed;top:68px;left:0;right:0;background:rgba(6,6,6,.98);backdrop-filter:blur(28px);border-bottom:1px solid var(--border2);padding:24px;z-index:199;transform:translateY(-120%);transition:transform .3s;display:flex;flex-direction:column;gap:4px;}
+.mobile-menu.open{transform:translateY(0);}
+.mobile-menu a{padding:14px 18px;border-radius:10px;color:var(--text);font-size:15px;font-weight:500;text-decoration:none;transition:background .2s;}
+.mobile-menu a:hover{background:var(--s2);color:var(--green);}
+.mobile-menu-cta{margin-top:10px;padding:14px;background:var(--green);color:#000;border-radius:10px;text-align:center;font-weight:700;text-decoration:none;font-size:14.5px;}
 
 /* ── HERO ── */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px clamp(16px,5vw,60px) 90px;position:relative;overflow:hidden;}
@@ -90,6 +147,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;ali
 .text-c{text-align:center;}
 .mx-a{margin-left:auto;margin-right:auto;}
 
+/* MICRO-CTA */
+.micro-cta{text-align:center;margin-top:48px;}
+.micro-cta a{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:var(--green3);border:1px solid rgba(0,230,118,.3);border-radius:10px;color:var(--green);font-size:13.5px;font-weight:700;text-decoration:none;transition:all .2s;}
+.micro-cta a:hover{background:rgba(0,230,118,.12);transform:translateY(-1px);}
+
 /* ── WHY SECTION ── */
 .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:56px;align-items:stretch;}
 .why-big{background:var(--s1);border:1px solid var(--border2);border-radius:22px;padding:40px;position:relative;overflow:hidden;transition:all .3s;}
@@ -119,6 +181,23 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;ali
 .pcard-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:10px;}
 .pcard-text{font-size:13px;color:var(--muted);line-height:1.72;}
 .pcard-solve{margin-top:16px;font-size:12px;font-weight:700;color:var(--green);display:flex;align-items:center;gap:6px;opacity:.8;}
+
+/* ── COMPARISON TABLE ── */
+.compare-wrap{background:var(--s1);border:1px solid var(--border2);border-radius:22px;overflow:hidden;margin-top:56px;}
+.compare-table{width:100%;border-collapse:collapse;}
+.compare-table thead{background:linear-gradient(160deg,rgba(0,230,118,.08),transparent);}
+.compare-table th{padding:22px 20px;font-size:13px;font-weight:700;text-align:left;border-bottom:1px solid var(--border2);}
+.compare-table th:first-child{font-family:'Syne',sans-serif;color:var(--muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase;}
+.compare-table th.us{color:var(--green);text-align:center;font-family:'Syne',sans-serif;font-size:15px;}
+.compare-table th.them{color:var(--muted);text-align:center;font-family:'Syne',sans-serif;}
+.compare-table td{padding:18px 20px;font-size:13.5px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.compare-table tbody tr:last-child td{border-bottom:none;}
+.compare-table tbody tr:hover{background:rgba(0,230,118,.02);}
+.compare-table td.feat{color:var(--text);font-weight:500;}
+.compare-table td.us{text-align:center;color:var(--green);font-weight:700;font-size:15px;background:rgba(0,230,118,.03);}
+.compare-table td.them{text-align:center;color:var(--muted);}
+.check-yes{display:inline-block;width:24px;height:24px;line-height:24px;border-radius:50%;background:var(--green3);color:var(--green);font-weight:800;}
+.check-no{display:inline-block;width:24px;height:24px;line-height:24px;border-radius:50%;background:rgba(255,23,68,.1);color:var(--red);font-weight:800;}
 
 /* ── FEATURES ── */
 .feat-wrap{display:grid;grid-template-columns:1fr 1.08fr;gap:60px;align-items:center;}
@@ -210,11 +289,23 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;ali
 .sv-title{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:10px;}
 .sv-text{font-size:13.5px;color:var(--muted);line-height:1.7;margin-bottom:24px;}
 .sv-channels{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
-.sc{padding:8px 16px;border:1px solid var(--border2);border-radius:8px;font-size:12px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:6px;}
+.sc{padding:8px 16px;border:1px solid var(--border2);border-radius:8px;font-size:12px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:6px;text-decoration:none;transition:all .2s;}
+.sc:hover{border-color:var(--green);color:var(--green);}
 .sc-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+.sc.wpp:hover{border-color:var(--wpp);color:var(--wpp);}
+.sc.wpp:hover .sc-dot{background:var(--wpp);}
 
 /* ── PRICING ── */
-.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px;align-items:center;}
+/* Billing toggle */
+.billing-toggle{display:inline-flex;align-items:center;background:var(--s1);border:1px solid var(--border2);border-radius:999px;padding:4px;margin-top:28px;position:relative;}
+.billing-toggle button{background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;padding:9px 22px;border-radius:999px;cursor:pointer;transition:all .2s;position:relative;z-index:2;}
+.billing-toggle button.active{color:#000;}
+.billing-toggle button:hover:not(.active){color:var(--text);}
+.billing-indicator{position:absolute;top:4px;bottom:4px;width:calc(50% - 4px);background:var(--green);border-radius:999px;transition:transform .3s cubic-bezier(.4,0,.2,1);z-index:1;box-shadow:0 0 24px rgba(0,230,118,.3);}
+.billing-indicator.annual{transform:translateX(100%);}
+.save-pill{display:inline-block;background:var(--green3);color:var(--green);font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px;margin-left:8px;letter-spacing:.05em;}
+
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;align-items:center;}
 .pc{background:var(--s1);border:1px solid var(--border2);border-radius:22px;padding:32px 28px;transition:all .3s;}
 .pc:hover{transform:translateY(-5px);}
 .pc.feat{border-color:rgba(0,230,118,.45);background:linear-gradient(160deg,rgba(0,230,118,.07),var(--s1));transform:scale(1.04);box-shadow:0 0 80px rgba(0,230,118,.1),0 0 0 1px rgba(0,230,118,.2);}
@@ -225,13 +316,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;ali
 .pc-cur{font-size:16px;color:var(--muted);}
 .pc-amt{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;line-height:1;}
 .pc-per{font-size:13px;color:var(--muted);}
+.pc-billed{font-size:11px;color:var(--dim);margin-bottom:6px;height:14px;}
 .pc-desc{font-size:13px;color:var(--muted);margin-bottom:24px;min-height:40px;line-height:1.55;}
-.pc-feats{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+.pc-feats{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
 .pc-feats li{display:flex;align-items:flex-start;gap:8px;font-size:13px;}
 .ck{color:var(--green);flex-shrink:0;margin-top:2px;font-weight:700;}
 .cx{color:var(--dim);flex-shrink:0;margin-top:2px;}
 .td{color:var(--dim);}
-.btn-plan{width:100%;padding:13px;border-radius:11px;font-size:14.5px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;}
+.guarantee-badge{display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(0,230,118,.05);border:1px solid rgba(0,230,118,.18);border-radius:10px;margin-bottom:16px;font-size:11.5px;color:var(--green);font-weight:600;}
+.guarantee-badge svg{flex-shrink:0;}
+.btn-plan{width:100%;padding:13px;border-radius:11px;font-size:14.5px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;border:none;}
 .btn-plan.out{background:none;border:1px solid var(--border3);color:var(--text);}
 .btn-plan.out:hover{border-color:var(--green);color:var(--green);}
 .btn-plan.sol{background:var(--green);border:none;color:#000;box-shadow:0 0 24px rgba(0,230,118,.2);}
@@ -271,17 +365,46 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;ali
 .fnote{text-align:center;font-size:11px;color:#2d2d2d;margin-top:12px;}
 .form-support{text-align:center;margin-top:16px;font-size:12px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px;}
 
+/* LGPD CHECKBOX */
+.lgpd-box{display:flex;align-items:flex-start;gap:10px;margin:14px 2px 12px;cursor:pointer;user-select:none;}
+.lgpd-box input[type="checkbox"]{appearance:none;-webkit-appearance:none;width:18px;height:18px;border:1.5px solid var(--border3);border-radius:4px;background:var(--s2);cursor:pointer;flex-shrink:0;margin-top:1px;position:relative;transition:all .2s;}
+.lgpd-box input[type="checkbox"]:checked{background:var(--green);border-color:var(--green);}
+.lgpd-box input[type="checkbox"]:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#000;font-size:13px;font-weight:800;}
+.lgpd-text{font-size:11.5px;color:var(--muted);line-height:1.55;}
+.lgpd-text a{color:var(--green);text-decoration:none;}
+.lgpd-text a:hover{text-decoration:underline;}
+
 /* ── FOOTER ── */
 footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
 .footer-in{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
 .footer-brand{display:flex;align-items:center;gap:10px;}
-.footer-brand img{height:32px;filter:drop-shadow(0 0 10px rgba(0,230,118,.35));}
+.footer-brand svg{height:28px;width:28px;filter:drop-shadow(0 0 10px rgba(0,230,118,.35));}
 .footer-brand-text{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--text);}
 .footer-brand-text span{color:var(--green);}
 .footer-note{font-size:12px;color:#333;}
-.footer-links{display:flex;gap:24px;}
+.footer-links{display:flex;gap:24px;align-items:center;}
 .footer-links a{font-size:12px;color:#333;text-decoration:none;transition:color .2s;}
 .footer-links a:hover{color:var(--text);}
+.footer-social{display:flex;gap:8px;}
+.footer-social a{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border2);border-radius:8px;color:#555;transition:all .2s;}
+.footer-social a:hover{border-color:var(--green);color:var(--green);}
+
+/* ── WHATSAPP FLOATING ── */
+.wpp-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;background:var(--wpp);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;box-shadow:0 8px 28px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,.6);z-index:150;transition:transform .2s;animation:wpp-pulse 2.5s infinite;}
+.wpp-float:hover{transform:scale(1.08);}
+@keyframes wpp-pulse{0%{box-shadow:0 8px 28px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 8px 28px rgba(37,211,102,.4),0 0 0 18px rgba(37,211,102,0)}100%{box-shadow:0 8px 28px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,0)}}
+
+/* ── COOKIE BANNER ── */
+.cookie-banner{position:fixed;bottom:24px;left:24px;max-width:400px;background:var(--s1);border:1px solid var(--border2);border-radius:16px;padding:20px;z-index:150;box-shadow:0 20px 60px rgba(0,0,0,.5);transform:translateY(200%);transition:transform .4s;}
+.cookie-banner.show{transform:translateY(0);}
+.cookie-text{font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:14px;}
+.cookie-text a{color:var(--green);text-decoration:none;}
+.cookie-btns{display:flex;gap:8px;}
+.cookie-btn{padding:9px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;border:none;transition:all .2s;}
+.cookie-btn.accept{background:var(--green);color:#000;flex:1;}
+.cookie-btn.accept:hover{background:var(--green2);}
+.cookie-btn.reject{background:var(--s2);color:var(--muted);border:1px solid var(--border2);}
+.cookie-btn.reject:hover{color:var(--text);}
 
 /* ── REVEAL ── */
 .rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
@@ -303,39 +426,75 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
   .hstat:nth-child(odd){border-right:1px solid var(--border2);}
   .hstat:nth-last-child(-n+2){border-bottom:none;}
 }
+@media(max-width:780px){
+  nav .nav-links,.nav-r .btn-g{display:none;}
+  .hamburger{display:flex;}
+  .compare-table th,.compare-table td{padding:12px 10px;font-size:12px;}
+  .compare-table th:first-child,.compare-table td.feat{font-size:12px;}
+}
 @media(max-width:640px){
   .pain-grid,.steps,.testimonials,.pricing{grid-template-columns:1fr;}
-  nav .nav-links,.nav-r .btn-g{display:none;}
   .hero-stats{grid-template-columns:1fr 1fr;}
   .trust-sep{display:none;}
   .trust-bar{gap:20px;}
   .footer-in{flex-direction:column;text-align:center;}
-  .footer-links{justify-content:center;}
+  .footer-links{justify-content:center;flex-wrap:wrap;}
   .why-grid{grid-template-columns:1fr;}
   .hstat:nth-child(odd){border-right:1px solid var(--border2);}
+  .cookie-banner{left:16px;right:16px;max-width:none;}
+  .wpp-float{bottom:16px;right:16px;width:52px;height:52px;}
 }
 </style>
 </head>
 <body>
 
+<!-- ═══════════════════════════════════════════════════════════════
+     LOGO SVG - Reutilizável. Use <svg><use href="#nf-logo"/></svg>
+═══════════════════════════════════════════════════════════════ -->
+<svg width="0" height="0" style="position:absolute;">
+  <defs>
+    <symbol id="nf-logo" viewBox="0 0 40 40">
+      <rect width="40" height="40" rx="10" fill="#00e676"/>
+      <rect x="10" y="22" width="3.5" height="10" fill="#000" rx="1"/>
+      <rect x="18.25" y="16" width="3.5" height="16" fill="#000" rx="1"/>
+      <rect x="26.5" y="8" width="3.5" height="24" fill="#000" rx="1"/>
+    </symbol>
+  </defs>
+</svg>
+
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <img src="data:image/jpeg;base64,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" alt="NextFinance">
+    <svg><use href="#nf-logo"/></svg>
     <span class="nav-logo-text">Next<span>Finance</span></span>
   </a>
   <ul class="nav-links">
     <li><a href="#porque">Por quê?</a></li>
     <li><a href="#recursos">Recursos</a></li>
+    <li><a href="#comparar">Comparar</a></li>
     <li><a href="#como-funciona">Como funciona</a></li>
-    <li><a href="#suporte">Suporte</a></li>
     <li><a href="#precos">Preços</a></li>
   </ul>
   <div class="nav-r">
     <a href="#" class="btn-g">Entrar</a>
     <a href="#comecar" class="btn-p">Começar grátis →</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#porque">Por quê?</a>
+  <a href="#recursos">Recursos</a>
+  <a href="#comparar">Comparar com outros</a>
+  <a href="#como-funciona">Como funciona</a>
+  <a href="#suporte">Suporte</a>
+  <a href="#precos">Preços</a>
+  <a href="#">Entrar</a>
+  <a href="#comecar" class="mobile-menu-cta">Começar grátis →</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -368,7 +527,7 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
 
   <div class="hero-stats">
     <div class="hstat"><div class="hstat-n">12.400+</div><div class="hstat-l">Usuários ativos</div></div>
-    <div class="hstat"><div class="hstat-n">R$2,3M</div><div class="hstat-l">Economizados pelos usuários</div></div>
+    <div class="hstat"><div class="hstat-n">R$2,3M</div><div class="hstat-l">Em gastos mapeados</div></div>
     <div class="hstat"><div class="hstat-n">4,9 ★</div><div class="hstat-l">Avaliação média</div></div>
     <div class="hstat"><div class="hstat-n">24/7</div><div class="hstat-l">Suporte disponível</div></div>
   </div>
@@ -439,15 +598,19 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
     </div>
 
     <div class="trust-bar rv3">
-      <div class="trust-item"><span class="trust-icon">🏆</span><div><div class="trust-num">Top 1</div><span>Fintech pessoal BR 2024</span></div></div>
+      <div class="trust-item"><span class="trust-icon">⭐</span><div><div class="trust-num">4,9/5</div><span>Avaliação dos usuários</span></div></div>
       <div class="trust-sep"></div>
-      <div class="trust-item"><span class="trust-icon">⭐</span><div><div class="trust-num">4,9/5</div><span>Satisfação dos usuários</span></div></div>
+      <div class="trust-item"><span class="trust-icon">👥</span><div><div class="trust-num">12.400+</div><span>Usuários ativos</span></div></div>
       <div class="trust-sep"></div>
       <div class="trust-item"><span class="trust-icon">🔒</span><div><div class="trust-num">AES-256</div><span>Criptografia bancária</span></div></div>
       <div class="trust-sep"></div>
       <div class="trust-item"><span class="trust-icon">💬</span><div><div class="trust-num">24/7</div><span>Suporte sempre ativo</span></div></div>
       <div class="trust-sep"></div>
       <div class="trust-item"><span class="trust-icon">🇧🇷</span><div><div class="trust-num">100%</div><span>Feito no Brasil</span></div></div>
+    </div>
+
+    <div class="micro-cta rv3">
+      <a href="#comecar">Criar minha conta grátis agora →</a>
     </div>
   </div>
 </section>
@@ -560,8 +723,72 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
   </div>
 </section>
 
+<!-- COMPARATIVO COM OUTROS APPS -->
+<section class="section" id="comparar" style="background:var(--s1);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="text-c rv">
+      <div class="slab">Comparar com outros apps</div>
+      <h2 class="stitle">NextFinance vs.<br>Apps tradicionais</h2>
+      <p class="sdesc mx-a">Veja as diferenças que importam na hora de escolher uma ferramenta de controle financeiro no Brasil.</p>
+    </div>
+
+    <div class="compare-wrap rv2">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Recurso</th>
+            <th class="us">NextFinance</th>
+            <th class="them">Apps tradicionais</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="feat">Precisa conectar banco?</td>
+            <td class="us"><span class="check-yes">✓</span> Não</td>
+            <td class="them">Exigem Open Finance</td>
+          </tr>
+          <tr>
+            <td class="feat">Gratuito de verdade</td>
+            <td class="us"><span class="check-yes">✓</span> Para sempre</td>
+            <td class="them">Grátis limitado</td>
+          </tr>
+          <tr>
+            <td class="feat">Cadastro em até 5 minutos</td>
+            <td class="us"><span class="check-yes">✓</span> Sim</td>
+            <td class="them"><span class="check-no">✗</span> Configuração longa</td>
+          </tr>
+          <tr>
+            <td class="feat">Suporte 24h em português</td>
+            <td class="us"><span class="check-yes">✓</span> 24/7</td>
+            <td class="them">Horário comercial</td>
+          </tr>
+          <tr>
+            <td class="feat">Calculadora de impacto mensal</td>
+            <td class="us"><span class="check-yes">✓</span> Incluída</td>
+            <td class="them"><span class="check-no">✗</span> Não tem</td>
+          </tr>
+          <tr>
+            <td class="feat">Seus dados ficam com você</td>
+            <td class="us"><span class="check-yes">✓</span> Sempre</td>
+            <td class="them">Compartilhados</td>
+          </tr>
+          <tr>
+            <td class="feat">Funciona no navegador</td>
+            <td class="us"><span class="check-yes">✓</span> Sem baixar app</td>
+            <td class="them">Exige instalação</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="micro-cta rv3">
+      <a href="#comecar">Testar grátis agora →</a>
+    </div>
+  </div>
+</section>
+
 <!-- COMO FUNCIONA -->
-<section class="section" id="como-funciona" style="background:var(--s1);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+<section class="section" id="como-funciona">
   <div class="container">
     <div class="text-c rv">
       <div class="slab">Como funciona</div>
@@ -592,12 +819,12 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
 </section>
 
 <!-- DEPOIMENTOS -->
-<section class="section">
+<section class="section" style="background:var(--s1);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
   <div class="container">
     <div class="text-c rv">
-      <div class="slab">Depoimentos reais</div>
+      <div class="slab">Depoimentos</div>
       <h2 class="stitle">Quem usa, não larga</h2>
-      <p class="sdesc mx-a">Mais de 12.000 brasileiros já transformaram sua relação com o dinheiro. Veja o que eles dizem.</p>
+      <p class="sdesc mx-a">Depoimentos de brasileiros que organizaram suas finanças com o NextFinance.</p>
     </div>
     <div class="testimonials">
       <div class="tc rv">
@@ -672,9 +899,9 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
           <div class="sv-title">24h · 7 dias · 365 dias</div>
           <div class="sv-text">Nossa equipe está de plantão agora mesmo. Fale com a gente pelo canal que preferir — sempre em português, sempre com solução de verdade.</div>
           <div class="sv-channels">
-            <div class="sc"><span class="sc-dot"></span>Chat ao vivo</div>
-            <div class="sc"><span class="sc-dot"></span>E-mail</div>
-            <div class="sc"><span class="sc-dot"></span>WhatsApp</div>
+            <a href="#" class="sc"><span class="sc-dot"></span>Chat ao vivo</a>
+            <a href="mailto:suporte@nextfinance.app" class="sc"><span class="sc-dot"></span>E-mail</a>
+            <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20NextFinance" target="_blank" class="sc wpp"><span class="sc-dot"></span>WhatsApp</a>
           </div>
           <div style="margin-top:24px;padding:16px;background:rgba(0,230,118,.05);border:1px dashed rgba(0,230,118,.2);border-radius:12px;font-size:13px;color:var(--muted);">
             <span style="color:var(--green);font-weight:700;">Tempo médio de resposta:</span><br>
@@ -693,11 +920,20 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
       <div class="slab">Preços</div>
       <h2 class="stitle">Transparente do início ao fim</h2>
       <p class="sdesc mx-a">Comece grátis. Upgrade apenas quando fizer sentido pra você. Sem pegadinhas, sem asteriscos, sem cobranças escondidas.</p>
+
+      <!-- BILLING TOGGLE -->
+      <div class="billing-toggle" role="tablist">
+        <div class="billing-indicator" id="billingIndicator"></div>
+        <button class="active" onclick="setBilling('monthly')" id="btnMonthly">Mensal</button>
+        <button onclick="setBilling('annual')" id="btnAnnual">Anual <span class="save-pill">-20%</span></button>
+      </div>
     </div>
+
     <div class="pricing">
       <div class="pc rv">
         <div class="pc-plan">Básico</div>
         <div class="pc-price"><span class="pc-cur">R$</span><span class="pc-amt">0</span><span class="pc-per">/mês</span></div>
+        <div class="pc-billed">Grátis para sempre · Sem cartão</div>
         <div class="pc-desc">Para começar a organizar. Funciona 100% no navegador, para sempre. Sem prazo.</div>
         <ul class="pc-feats">
           <li><span class="ck">✓</span>Cadastro ilimitado de gastos</li>
@@ -711,11 +947,21 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
         <button class="btn-plan out" onclick="document.getElementById('comecar').scrollIntoView({behavior:'smooth'})">Começar grátis agora</button>
         <div class="pc-support">🕐 Suporte 24h incluído</div>
       </div>
+
       <div class="pc feat rv2">
         <div class="pc-tag">⭐ Mais popular</div>
         <div class="pc-plan">Pro</div>
-        <div class="pc-price"><span class="pc-cur">R$</span><span class="pc-amt">19</span><span class="pc-per">/mês</span></div>
+        <div class="pc-price">
+          <span class="pc-cur">R$</span>
+          <span class="pc-amt" data-monthly="19" data-annual="15">19</span>
+          <span class="pc-per">/mês</span>
+        </div>
+        <div class="pc-billed" id="proBilled">Cobrado mensalmente</div>
         <div class="pc-desc">Para quem quer controle total com IA financeira e relatórios avançados.</div>
+        <div class="guarantee-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L3 7v6c0 5 3.5 9 9 9s9-4 9-9V7l-9-5z"/><polyline points="9 12 11 14 15 10"/></svg>
+          7 dias de garantia · Devolvemos 100%
+        </div>
         <ul class="pc-feats">
           <li><span class="ck">✓</span>Tudo do plano Básico</li>
           <li><span class="ck">✓</span>Análise com IA financeira</li>
@@ -725,13 +971,23 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
           <li><span class="ck">✓</span>Suporte prioritário 24h</li>
           <li><span class="ck">✓</span>Resposta &lt; 5 minutos</li>
         </ul>
-        <button class="btn-plan sol" onclick="document.getElementById('comecar').scrollIntoView({behavior:'smooth'})">Assinar por R$19/mês</button>
+        <button class="btn-plan sol" onclick="document.getElementById('comecar').scrollIntoView({behavior:'smooth'})" id="btnPro">Assinar por R$19/mês</button>
         <div class="pc-support">🚀 Suporte prioritário 24/7</div>
       </div>
+
       <div class="pc rv3">
         <div class="pc-plan">Família</div>
-        <div class="pc-price"><span class="pc-cur">R$</span><span class="pc-amt">29</span><span class="pc-per">/mês</span></div>
+        <div class="pc-price">
+          <span class="pc-cur">R$</span>
+          <span class="pc-amt" data-monthly="29" data-annual="23">29</span>
+          <span class="pc-per">/mês</span>
+        </div>
+        <div class="pc-billed" id="famBilled">Cobrado mensalmente</div>
         <div class="pc-desc">Para famílias e casais que querem planejar juntos com múltiplos perfis.</div>
+        <div class="guarantee-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L3 7v6c0 5 3.5 9 9 9s9-4 9-9V7l-9-5z"/><polyline points="9 12 11 14 15 10"/></svg>
+          7 dias de garantia · Devolvemos 100%
+        </div>
         <ul class="pc-feats">
           <li><span class="ck">✓</span>Tudo do plano Pro</li>
           <li><span class="ck">✓</span>Até 5 perfis por conta</li>
@@ -741,7 +997,7 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
           <li><span class="ck">✓</span>Suporte VIP 24h</li>
           <li><span class="ck">✓</span>Gerente de conta dedicado</li>
         </ul>
-        <button class="btn-plan out" onclick="document.getElementById('comecar').scrollIntoView({behavior:'smooth'})">Testar 7 dias grátis</button>
+        <button class="btn-plan out" onclick="document.getElementById('comecar').scrollIntoView({behavior:'smooth'})" id="btnFam">Assinar por R$29/mês</button>
         <div class="pc-support">👑 Suporte VIP 24/7 dedicado</div>
       </div>
     </div>
@@ -786,6 +1042,13 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
           <input class="fi2" id="sPhone" type="tel" placeholder="(11) 99999-9999" autocomplete="tel">
         </div>
         <div class="ferr" id="fErr"></div>
+
+        <!-- LGPD CHECKBOX -->
+        <label class="lgpd-box">
+          <input type="checkbox" id="lgpdCheck">
+          <span class="lgpd-text">Li e concordo com a <a href="#" target="_blank">Política de Privacidade</a> e os <a href="#" target="_blank">Termos de Uso</a>, em conformidade com a LGPD.</span>
+        </label>
+
         <button class="btn-xl" style="width:100%;justify-content:center;margin-top:6px;" onclick="submitForm()" id="fBtn">
           Criar minha conta grátis →
         </button>
@@ -810,7 +1073,7 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
 <footer>
   <div class="footer-in">
     <div class="footer-brand">
-      <img src="data:image/jpeg;base64,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" alt="NextFinance">
+      <svg><use href="#nf-logo"/></svg>
       <span class="footer-brand-text">Next<span>Finance</span></span>
     </div>
     <span class="footer-note">© 2025 NextFinance · Controle financeiro inteligente 🇧🇷 · Suporte 24h</span>
@@ -818,17 +1081,84 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
       <a href="#">Privacidade</a>
       <a href="#">Termos</a>
       <a href="#">Suporte 24h</a>
+      <div class="footer-social">
+        <a href="#" target="_blank" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" target="_blank" aria-label="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://wa.me/5511999999999" target="_blank" aria-label="WhatsApp">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2.1-.3 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4C8.7 21.5 10.3 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </footer>
 
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20NextFinance" target="_blank" class="wpp-float" aria-label="Falar no WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2.1-.3 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4C8.7 21.5 10.3 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+</a>
+
+<!-- COOKIE BANNER (LGPD) -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-text">
+    🍪 Usamos cookies para melhorar sua experiência e cumprir a <strong>LGPD</strong>. Ao continuar navegando, você concorda com nossa <a href="#">Política de Privacidade</a>.
+  </div>
+  <div class="cookie-btns">
+    <button class="cookie-btn reject" onclick="handleCookies(false)">Recusar</button>
+    <button class="cookie-btn accept" onclick="handleCookies(true)">Aceitar todos</button>
+  </div>
+</div>
+
 <script>
+// ── HAMBURGER MENU (MOBILE) ──
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+  hamburger.setAttribute('aria-expanded', open);
+});
+document.querySelectorAll('.mobile-menu a').forEach(a => {
+  a.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', false);
+  });
+});
+
+// ── BILLING TOGGLE (MONTHLY / ANNUAL) ──
+const billingIndicator = document.getElementById('billingIndicator');
+const btnMonthly = document.getElementById('btnMonthly');
+const btnAnnual = document.getElementById('btnAnnual');
+
+function setBilling(mode) {
+  const isAnnual = mode === 'annual';
+  billingIndicator.classList.toggle('annual', isAnnual);
+  btnMonthly.classList.toggle('active', !isAnnual);
+  btnAnnual.classList.toggle('active', isAnnual);
+
+  document.querySelectorAll('.pc-amt').forEach(el => {
+    if (el.dataset.monthly && el.dataset.annual) {
+      el.textContent = isAnnual ? el.dataset.annual : el.dataset.monthly;
+    }
+  });
+
+  document.getElementById('proBilled').textContent = isAnnual ? 'R$180/ano · Economia de R$48' : 'Cobrado mensalmente';
+  document.getElementById('famBilled').textContent = isAnnual ? 'R$276/ano · Economia de R$72' : 'Cobrado mensalmente';
+  document.getElementById('btnPro').textContent = isAnnual ? 'Assinar por R$15/mês' : 'Assinar por R$19/mês';
+  document.getElementById('btnFam').textContent = isAnnual ? 'Assinar por R$23/mês' : 'Assinar por R$29/mês';
+}
+
 // ── FAQ ──
 const faqs = [
   {q:'O NextFinance é realmente gratuito?', a:'Sim! O plano básico é 100% gratuito e inclui cadastro ilimitado de gastos, calculadora de impacto mensal e painel de análise visual. Sem cartão, sem surpresa, sem prazo de expiração.'},
   {q:'Preciso conectar minha conta bancária?', a:'Não! O NextFinance funciona sem nenhuma integração bancária. Você cadastra seus gastos manualmente, o que mantém seus dados bancários completamente seguros e privados. Seu banco é só seu.'},
   {q:'O suporte realmente funciona 24 horas?', a:'Sim! Nossa equipe de suporte está disponível 24 horas por dia, 7 dias por semana, 365 dias por ano. Você pode entrar em contato via chat ao vivo, e-mail ou WhatsApp. No plano Pro, a prioridade é máxima e o tempo médio de resposta é menos de 5 minutos.'},
-  {q:'Meus dados financeiros são seguros?', a:'Absolutamente. Utilizamos criptografia AES-256 — o mesmo padrão dos maiores bancos do Brasil. Seus dados nunca são compartilhados com terceiros e ficam protegidos em servidores seguros.'},
+  {q:'Como funciona a garantia de 7 dias?', a:'Assinou o plano Pro ou Família e não gostou? Em até 7 dias após a contratação, entre em contato com nosso suporte e devolvemos 100% do valor pago. Sem perguntas, sem burocracia. Simples assim.'},
+  {q:'Meus dados financeiros são seguros?', a:'Absolutamente. Utilizamos criptografia AES-256 — o mesmo padrão dos maiores bancos do Brasil. Seus dados nunca são compartilhados com terceiros e estão em total conformidade com a LGPD.'},
   {q:'Funciona em celular e computador?', a:'Sim! O NextFinance é totalmente responsivo e funciona perfeitamente em qualquer dispositivo — celular, tablet ou computador — sem precisar baixar nenhum aplicativo. Basta acessar pelo navegador.'},
   {q:'Como funciona a calculadora de impacto mensal?', a:'Você informa o valor e a frequência do gasto (diário, semanal, mensal, anual...) e a calculadora converte automaticamente para custo por semana, mês, ano e total de parcelas em tempo real. É aí que a maioria das pessoas percebe gastos que nem sabia que tinha.'},
   {q:'Posso cancelar o plano Pro quando quiser?', a:'Sim, sem fidelidade e sem burocracia. Cancele com 1 clique a qualquer momento pelo painel. Sem multa, sem ligação para central, sem enrolação. Você manda.'}
@@ -852,16 +1182,18 @@ function submitForm() {
   const name = document.getElementById('sName').value.trim();
   const email = document.getElementById('sEmail').value.trim();
   const phone = document.getElementById('sPhone').value.trim();
+  const lgpd = document.getElementById('lgpdCheck').checked;
   const err = document.getElementById('fErr');
   err.style.display = 'none';
   if(!name){ showErr('Por favor, informe seu nome.'); return; }
   if(!email){ showErr('Por favor, informe seu e-mail.'); return; }
   if(!email.includes('@')){ showErr('E-mail inválido. Verifique e tente novamente.'); return; }
+  if(!lgpd){ showErr('Você precisa aceitar a Política de Privacidade para continuar.'); return; }
   const btn = document.getElementById('fBtn');
   btn.textContent = 'Criando sua conta...';
   btn.style.opacity = '.7';
   btn.disabled = true;
-  try { localStorage.setItem('nf_leads', JSON.stringify([{id:Date.now(),name,email,phone,date:new Date().toISOString()}])); } catch(e) {}
+  try { localStorage.setItem('nf_leads', JSON.stringify([{id:Date.now(),name,email,phone,lgpd:true,date:new Date().toISOString()}])); } catch(e) {}
   setTimeout(() => {
     document.getElementById('formContent').style.display = 'none';
     const s = document.getElementById('formSuccess');
@@ -879,6 +1211,19 @@ function showErr(msg) {
   e.style.display = 'block';
   setTimeout(() => { e.style.display='none'; }, 4000);
 }
+
+// ── COOKIE BANNER (LGPD) ──
+function handleCookies(accepted) {
+  try { localStorage.setItem('nf_cookies', accepted ? 'accepted' : 'rejected'); } catch(e) {}
+  document.getElementById('cookieBanner').classList.remove('show');
+}
+window.addEventListener('load', () => {
+  try {
+    if (!localStorage.getItem('nf_cookies')) {
+      setTimeout(() => document.getElementById('cookieBanner').classList.add('show'), 1500);
+    }
+  } catch(e) {}
+});
 
 // ── REVEAL ON SCROLL ──
 const obs = new IntersectionObserver(entries => {

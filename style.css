@@ -1,0 +1,2374 @@
+/* ============================================================
+   NextFinance — Folha de Estilos Principal
+   style.css
+
+   Aqui mora toda a aparência do site. Cores, fontes,
+   animações, responsividade... tudo separadinho. *leo
+   ============================================================ */
+
+
+/* ── VARIÁVEIS GLOBAIS ──────────────────────────────────────
+   Pensa nessas variáveis como a paleta de cores e o
+   "DNA visual" do projeto. Mudar aqui reflete em tudo. 
+   ──────────────────────────────────────────────────────── */
+:root {
+  /* Tons de fundo escuro, do mais escuro pro menos */
+  --bg:      #060606;
+  --s1:      #0e0e0e;
+  --s2:      #151515;
+  --s3:      #1a1a1a;
+
+  /* Bordas em escala de sutil a visível */
+  --border:  #1e1e1e;
+  --border2: #2a2a2a;
+  --border3: #333;
+
+  /* Verde principal da marca — o senhor incrivel do visual *leozinho */
+  --green:      #00e676;
+  --green2:     #00c853;
+  --green3:     rgba(0, 230, 118, .07);
+  --greenglow:  rgba(0, 230, 118, .18);
+  --greensoft:  rgba(0, 230, 118, .04);
+
+  /* Texto e tons neutros */
+  --text:   #f0f0f0;
+  --muted:  #777;
+  --dim:    #3a3a3a;
+  --dimmer: #2a2a2a;
+
+  /* Cores de destaque (alertas, avisos, links) */
+  --red:    #ff1744;
+  --yellow: #ffd740;
+  --blue:   #40c4ff;
+
+  /* Verde do WhatsApp */
+  --wpp: #25d366;
+}
+
+
+/* ── RESET BÁSICO ───────────────────────────────────────────
+   Zerando as margens e paddings que o browser coloca
+   por conta própria. Nada de surpresa no layout. *Jp
+   ──────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* Rolagem suave ao clicar nos links de âncora */
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  /* Evita scroll horizontal indesejado no mobile */
+  overflow-x: hidden;
+}
+
+/* Scrollbar fininha e discreta na lateral *leo */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-thumb { background: var(--border3); }
+
+
+/* ── TEXTURA DE RUÍDO (NOISE OVERLAY) ──────────────────────
+   Aquele efeito de "granulado" sutil que dá profundidade
+   ao fundo escuro. É um SVG em base64 fixo na tela. *Jp
+   ──────────────────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: .4;
+}
+
+
+/* ── NAVEGAÇÃO (NAV) ────────────────────────────────────────
+   Barra fixa no topo com logo, links e botões de ação.
+   O backdrop-filter dá aquele efeito de vidro fosco. *leo
+   ──────────────────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200; /* Fica na frente de tudo */
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(16px, 4vw, 52px);
+  background: rgba(6, 6, 6, .92);
+  backdrop-filter: blur(28px);
+  border-bottom: 1px solid var(--border);
+  transition: all .3s;
+}
+
+/* Logo da nav: ícone SVG + texto */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+/* Brilho verde no ícone do logo *Jp */
+.nav-logo svg {
+  height: 38px;
+  width: 38px;
+  filter: drop-shadow(0 0 18px rgba(0, 230, 118, .5));
+  transition: filter .3s;
+}
+
+.nav-logo:hover svg {
+  filter: drop-shadow(0 0 28px rgba(0, 230, 118, .9));
+}
+
+.nav-logo-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -.02em;
+}
+
+/* A palavra "Finance" fica em verde */
+.nav-logo-text span { color: var(--green); }
+
+/* Lista de links do menu */
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: color .2s;
+  white-space: nowrap;
+  position: relative;
+}
+
+/* Linha verde que aparece por baixo do link no hover *leo */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .2s;
+}
+
+.nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+/* Lado direito da nav: botões de ação */
+.nav-r {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Botão "Entrar" — estilo fantasma */
+.btn-g {
+  padding: 8px 20px;
+  border: 1px solid var(--border3);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  background: none;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  text-decoration: none;
+  transition: all .2s;
+}
+
+.btn-g:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+/* Botão "Começar grátis" — sólido verde *Jp */
+.btn-p {
+  padding: 9px 24px;
+  border: none;
+  border-radius: 8px;
+  background: var(--green);
+  color: #000;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  text-decoration: none;
+  transition: all .2s;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 0 20px rgba(0, 230, 118, .2);
+}
+
+.btn-p:hover {
+  background: var(--green2);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 32px rgba(0, 230, 118, .4);
+}
+
+
+/* ── HAMBURGER (MENU MOBILE) ────────────────────────────────
+   Ícone de três traços que aparece só no mobile.
+   Quando clicado, vira um X. *leo
+   ──────────────────────────────────────────────────────── */
+.hamburger {
+  display: none; /* Escondido por padrão, aparece no mobile */
+  flex-direction: column;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: 1px solid var(--border3);
+  border-radius: 8px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all .2s;
+}
+
+.hamburger:hover { border-color: var(--green); }
+
+/* Os três tracinhos */
+.hamburger span {
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all .25s;
+}
+
+/* Animação de virar X quando o menu abre *Jp */
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+/* ── PAINEL DO MENU MOBILE ──────────────────────────────────
+   O menu que desce de cima quando o hamburger é clicado.
+   Usa translateY para deslizar suavemente. *leo
+   ──────────────────────────────────────────────────────── */
+.mobile-menu {
+  position: fixed;
+  top: 68px; /* Logo abaixo da nav */
+  left: 0;
+  right: 0;
+  background: rgba(6, 6, 6, .98);
+  backdrop-filter: blur(28px);
+  border-bottom: 1px solid var(--border2);
+  padding: 24px;
+  z-index: 199;
+  transform: translateY(-120%); /* Começa escondido pra cima */
+  transition: transform .3s;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Quando recebe a classe .open, desce pra tela */
+.mobile-menu.open { transform: translateY(0); }
+
+.mobile-menu a {
+  padding: 14px 18px;
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background .2s;
+}
+
+.mobile-menu a:hover {
+  background: var(--s2);
+  color: var(--green);
+}
+
+/* Botão de CTA dentro do menu mobile */
+.mobile-menu-cta {
+  margin-top: 10px;
+  padding: 14px;
+  background: var(--green);
+  color: #000;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 14.5px;
+}
+
+
+/* ── HERO (SEÇÃO PRINCIPAL) ─────────────────────────────────
+   A primeira coisa que o visitante vê. Ocupa 100% da
+   altura da tela com título grande e botões de ação. *Jp
+   ──────────────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px clamp(16px, 5vw, 60px) 90px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Grade de linhas verdes suave no fundo do hero *leo */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 230, 118, .03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 230, 118, .03) 1px, transparent 1px);
+  background-size: 64px 64px;
+  /* Fade nas bordas usando máscara */
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 30%, transparent 100%);
+}
+
+/* Brilho grande no centro-topo do hero */
+.hero-glow {
+  position: absolute;
+  width: 900px;
+  height: 900px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 230, 118, .11) 0%, transparent 65%);
+  top: 0%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  animation: pulse-glow 6s ease-in-out infinite;
+}
+
+/* Brilho menor no canto inferior direito *Jp */
+.hero-glow2 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 230, 118, .06) 0%, transparent 65%);
+  bottom: 10%;
+  right: 10%;
+  pointer-events: none;
+  animation: pulse-glow 8s ease-in-out infinite reverse;
+}
+
+/* Pulsa crescendo e diminuindo suavemente */
+@keyframes pulse-glow {
+  0%,  100% { transform: translateX(-50%) scale(1);    opacity: 1; }
+  50%       { transform: translateX(-50%) scale(1.08); opacity: .7; }
+}
+
+/* Badge "Nova versão v2.0" no topo do hero */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--s2);
+  border: 1px solid rgba(0, 230, 118, .28);
+  border-radius: 999px;
+  padding: 7px 18px;
+  margin-bottom: 30px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--green);
+  animation: fu .8s ease both;
+}
+
+/* Ponto pulsante ao lado do badge *leo */
+.pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: blink 1.8s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes blink {
+  0%,  100% { opacity: 1;   box-shadow: 0 0 8px var(--green); }
+  50%       { opacity: .25; box-shadow: none; }
+}
+
+/* Título principal H1 — o mais importante da página */
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(42px, 8vw, 96px); /* Responsivo automático */
+  font-weight: 800;
+  line-height: 1.01;
+  margin-bottom: 24px;
+  animation: fu .8s .08s ease both;
+  letter-spacing: -.03em;
+}
+
+/* Trecho em verde e brilhante no H1 *Jp */
+.hero h1 em {
+  font-style: normal;
+  color: var(--green);
+  text-shadow: 0 0 80px rgba(0, 230, 118, .4);
+}
+
+/* Subtítulo abaixo do H1 */
+.hero-sub {
+  font-size: clamp(15px, 2vw, 20px);
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto 14px;
+  animation: fu .8s .14s ease both;
+  line-height: 1.65;
+}
+
+/* Texto pequeno de prova social logo abaixo */
+.hero-tagline {
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 38px;
+  animation: fu .8s .18s ease both;
+}
+
+.hero-tagline span {
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* Grupo de botões CTA do hero *leo */
+.hero-btns {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fu .8s .24s ease both;
+}
+
+/* Botão primário grande — o principal CTA */
+.btn-xl {
+  padding: 15px 38px;
+  border: none;
+  border-radius: 12px;
+  background: var(--green);
+  color: #000;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  text-decoration: none;
+  transition: all .2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 30px rgba(0, 230, 118, .25);
+}
+
+.btn-xl:hover {
+  background: var(--green2);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 48px rgba(0, 230, 118, .45);
+}
+
+/* Botão secundário grande — estilo fantasma */
+.btn-xl2 {
+  padding: 15px 32px;
+  border: 1px solid var(--border3);
+  border-radius: 12px;
+  background: none;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  text-decoration: none;
+  transition: all .2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-xl2:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+/* Pílula de suporte 24h abaixo dos botões *Jp */
+.support-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 230, 118, .06);
+  border: 1px solid rgba(0, 230, 118, .2);
+  border-radius: 999px;
+  padding: 6px 16px;
+  margin-top: 18px;
+  font-size: 11.5px;
+  color: var(--green);
+  animation: fu .8s .3s ease both;
+}
+
+/* Ponto verde pulsante dentro da pílula de suporte */
+.support-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00e676;
+  animation: blink 1.5s infinite;
+}
+
+/* Grid de estatísticas no rodapé do hero *leo */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 72px;
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  background: var(--s1);
+  overflow: hidden;
+  animation: fu .8s .32s ease both;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .4);
+}
+
+/* Cada célula do grid de stats */
+.hstat {
+  padding: 24px;
+  text-align: center;
+  border-right: 1px solid var(--border2);
+  position: relative;
+}
+
+.hstat:last-child { border-right: none; }
+
+/* Número grande em verde */
+.hstat-n {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--green);
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+/* Legenda embaixo do número */
+.hstat-l {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* Animação de entrada usada em vários elementos — fade + subida *Jp */
+@keyframes fu {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ── STRIP (FAIXA ANIMADA) ──────────────────────────────────
+   Aquela faixa que rola infinitamente com features do produto.
+   Efeito marquee puro em CSS. *leo
+   ──────────────────────────────────────────────────────── */
+.strip {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  background: var(--s1);
+  padding: 14px 0;
+}
+
+.strip-track {
+  display: flex;
+  gap: 0;
+  white-space: nowrap;
+  animation: marquee 26s linear infinite;
+}
+
+/* Cada item da faixa com ponto verde antes */
+.strip-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 32px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--dim);
+  flex-shrink: 0;
+}
+
+/* Pontinho decorativo entre itens do strip */
+.sdot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+/* Animação de rolagem horizontal infinita */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+
+/* ── SEÇÕES GENÉRICAS ────────────────────────────────────────
+   Espaçamento e largura máxima padrão para todas as seções.
+   Reutilizado em todo o site. *Jp
+   ──────────────────────────────────────────────────────── */
+.section {
+  padding: clamp(70px, 9vw, 120px) clamp(16px, 5vw, 60px);
+  position: relative;
+}
+
+/* Container interno com largura máxima centralizada */
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+/* Label pequena em cima dos títulos (ex: "Por que NextFinance?") */
+.slab {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+/* Título de seção — grande e pesado */
+.stitle {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(30px, 4.5vw, 52px);
+  font-weight: 800;
+  line-height: 1.07;
+  margin-bottom: 16px;
+  letter-spacing: -.02em;
+}
+
+/* Parágrafo de descrição das seções */
+.sdesc {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 580px;
+  line-height: 1.72;
+}
+
+/* Utilitários de alinhamento */
+.text-c { text-align: center; }
+.mx-a   { margin-left: auto; margin-right: auto; }
+
+
+/* ── MICRO-CTA ───────────────────────────────────────────────
+   Pequeno botão de ação que aparece no final de algumas seções
+   para redirecionar o visitante. *leo
+   ──────────────────────────────────────────────────────── */
+.micro-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+
+.micro-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  background: var(--green3);
+  border: 1px solid rgba(0, 230, 118, .3);
+  border-radius: 10px;
+  color: var(--green);
+  font-size: 13.5px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all .2s;
+}
+
+.micro-cta a:hover {
+  background: rgba(0, 230, 118, .12);
+  transform: translateY(-1px);
+}
+
+
+/* ── SEÇÃO "POR QUÊ" ─────────────────────────────────────────
+   Grade com o card grande (brasil) e a coluna com 3 cards
+   menores ao lado. Adaptada para coluna no mobile. *Jp
+   ──────────────────────────────────────────────────────── */
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-top: 56px;
+  align-items: stretch;
+}
+
+/* Card grande da esquerda */
+.why-big {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 22px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  transition: all .3s;
+}
+
+/* Gradiente sutil no canto do card */
+.why-big::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 0% 0%, rgba(0, 230, 118, .06), transparent 60%);
+  pointer-events: none;
+}
+
+.why-big:hover {
+  border-color: rgba(0, 230, 118, .25);
+  transform: translateY(-4px);
+}
+
+/* Emoji grande no topo do card *leo */
+.why-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.why-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.why-text {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+/* Destaque verde no fundo do card "Por quê" */
+.why-highlight {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: var(--green3);
+  border: 1px solid rgba(0, 230, 118, .2);
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* Coluna direita com 3 cards menores empilhados *Jp */
+.why-col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Card menor: ícone + texto lado a lado */
+.why-small {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 18px;
+  padding: 26px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  transition: all .3s;
+}
+
+.why-small:hover {
+  border-color: rgba(0, 230, 118, .2);
+  transform: translateX(4px); /* Desliza pra direita no hover *leo */
+}
+
+/* Caixa do ícone nos cards pequenos */
+.ws-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  background: var(--s2);
+  border: 1px solid var(--border2);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ws-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.ws-text {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+
+/* ── SEÇÃO "O PROBLEMA" (PAIN) ──────────────────────────────
+   3 cards de dor que o produto resolve. Tem animação no hover
+   que revela uma setinha verde no canto. *Jp
+   ──────────────────────────────────────────────────────── */
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 56px;
+}
+
+.pcard {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  padding: 32px 26px;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+/* Linha vermelha que aparece no topo do card no hover *leo */
+.pcard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+/* Setinha verde no canto inferior direito */
+.pcard::after {
+  content: '↓';
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  font-size: 20px;
+  color: var(--green);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: all .3s;
+}
+
+.pcard:hover {
+  border-color: rgba(0, 230, 118, .2);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
+}
+
+.pcard:hover::before { opacity: 1; }
+.pcard:hover::after  { opacity: 1; transform: translateY(0); }
+
+.pcard-icon {
+  font-size: 38px;
+  margin-bottom: 18px;
+  display: block;
+}
+
+.pcard-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.pcard-text {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.72;
+}
+
+/* Texto de solução no rodapé do card de dor *Jp */
+.pcard-solve {
+  margin-top: 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: .8;
+}
+
+
+/* ── TABELA COMPARATIVA ──────────────────────────────────────
+   Tabela de NextFinance vs. apps tradicionais.
+   Destaque verde na coluna do nosso produto. *leo
+   ──────────────────────────────────────────────────────── */
+.compare-wrap {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 22px;
+  overflow: hidden;
+  margin-top: 56px;
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Cabeçalho da tabela com gradiente sutil */
+.compare-table thead {
+  background: linear-gradient(160deg, rgba(0, 230, 118, .08), transparent);
+}
+
+.compare-table th {
+  padding: 22px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: left;
+  border-bottom: 1px solid var(--border2);
+}
+
+/* Coluna de feature (primeira coluna) */
+.compare-table th:first-child {
+  font-family: 'Syne', sans-serif;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+/* Coluna "NextFinance" em verde *Jp */
+.compare-table th.us {
+  color: var(--green);
+  text-align: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+}
+
+/* Coluna dos concorrentes em cinza */
+.compare-table th.them {
+  color: var(--muted);
+  text-align: center;
+  font-family: 'Syne', sans-serif;
+}
+
+.compare-table td {
+  padding: 18px 20px;
+  font-size: 13.5px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.compare-table tbody tr:last-child td { border-bottom: none; }
+.compare-table tbody tr:hover { background: rgba(0, 230, 118, .02); }
+.compare-table td.feat { color: var(--text); font-weight: 500; }
+
+/* Coluna da NextFinance nas células */
+.compare-table td.us {
+  text-align: center;
+  color: var(--green);
+  font-weight: 700;
+  font-size: 15px;
+  background: rgba(0, 230, 118, .03);
+}
+
+.compare-table td.them {
+  text-align: center;
+  color: var(--muted);
+}
+
+/* Ícone de check verde (✓) */
+.check-yes {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 50%;
+  background: var(--green3);
+  color: var(--green);
+  font-weight: 800;
+}
+
+/* Ícone de X vermelho (✗) *leo */
+.check-no {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 23, 68, .1);
+  color: var(--red);
+  font-weight: 800;
+}
+
+
+/* ── SEÇÃO DE RECURSOS (FEATURES) ───────────────────────────
+   Layout em duas colunas: lista de funcionalidades à esquerda
+   e mockup do produto à direita. *Jp
+   ──────────────────────────────────────────────────────── */
+.feat-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.08fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Lista de features clicáveis */
+.feat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Cada item de feature (clicável) */
+.fi {
+  display: flex;
+  gap: 16px;
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.fi:hover, .fi.on {
+  background: var(--s1);
+  border-color: var(--border2);
+}
+
+/* Feature ativa recebe destaque verde *leo */
+.fi.on {
+  border-color: rgba(0, 230, 118, .25);
+  background: rgba(0, 230, 118, .03);
+}
+
+.fi.on .fi-icon {
+  background: var(--green3);
+  border-color: rgba(0, 230, 118, .3);
+  color: var(--green);
+}
+
+/* Caixinha do ícone de cada feature */
+.fi-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--s2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  transition: all .2s;
+}
+
+.fi-body h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 14.5px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.fi-body p {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+
+/* ── MOCKUP DO DASHBOARD ────────────────────────────────────
+   Card visual que simula a interface do produto com barras,
+   gráficos e dados financeiros fictícios. *Jp
+   ──────────────────────────────────────────────────────── */
+.mock-wrap { position: relative; }
+
+.mock-card {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 48px 120px rgba(0, 0, 0, .6), 0 0 0 1px rgba(255, 255, 255, .03);
+}
+
+/* Barra superior do mockup (estilo macOS) *leo */
+.mock-hd {
+  background: var(--s2);
+  border-bottom: 1px solid var(--border2);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Os três pontinhos coloridos (red/yellow/green) */
+.mock-dots { display: flex; gap: 7px; }
+.md { width: 10px; height: 10px; border-radius: 50%; }
+
+.mock-body { padding: 22px; }
+
+/* Label cinza acima do total */
+.mock-rl {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+/* Número total de gastos em verde grande */
+.mock-total {
+  font-family: 'Syne', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--green);
+  margin-bottom: 2px;
+  text-shadow: 0 0 40px rgba(0, 230, 118, .3);
+}
+
+.mock-sub {
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Seta de tendência positiva (queda nos gastos) */
+.trend-down { color: #00e676; font-size: 12px; font-weight: 700; }
+
+/* Container das barras de progresso por categoria */
+.mock-bars { display: flex; flex-direction: column; gap: 10px; }
+
+/* Linha de uma barra: label + barra + valor *Jp */
+.mbr { display: flex; align-items: center; gap: 10px; }
+
+.mbl { width: 80px; font-size: 11px; color: var(--muted); flex-shrink: 0; }
+
+.mbb {
+  flex: 1;
+  height: 6px;
+  background: var(--s3);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* Preenchimento colorido da barra */
+.mbf {
+  height: 100%;
+  border-radius: 6px;
+  animation: grow 1.6s 1.2s ease both;
+  transform-origin: left;
+  transform: scaleX(0); /* Começa zerada */
+}
+
+/* Cresce da esquerda para a direita na entrada */
+@keyframes grow { to { transform: scaleX(1); } }
+
+.mbv { width: 60px; font-size: 11px; font-weight: 600; text-align: right; color: var(--muted); }
+
+/* Cards pequenos de métricas abaixo das barras *leo */
+.mock-cards {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+
+.mc {
+  background: var(--s2);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 13px;
+}
+
+.mc-l {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+
+.mc-v {
+  font-family: 'Syne', sans-serif;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+/* Cards flutuantes ao redor do mockup (notificações de IA) *Jp */
+.mock-float {
+  position: absolute;
+  background: var(--s2);
+  border: 1px solid var(--border2);
+  border-radius: 14px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .5);
+}
+
+/* Card flutuante no canto superior direito */
+.mf-tr {
+  top: -20px;
+  right: -20px;
+  animation: f1 4.5s ease-in-out infinite;
+}
+
+/* Card flutuante no canto inferior esquerdo */
+.mf-bl {
+  bottom: -20px;
+  left: -20px;
+  animation: f2 5.2s ease-in-out infinite;
+}
+
+/* Animação de flutuação para cima e para baixo */
+@keyframes f1 { 0%, 100% { transform: translateY(0); }  50% { transform: translateY(-10px); } }
+@keyframes f2 { 0%, 100% { transform: translateY(0); }  50% { transform: translateY(8px); } }
+
+.mf-icon { font-size: 22px; }
+.mf-l { font-size: 10px; color: var(--muted); }
+.mf-v { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 800; color: var(--green); }
+
+
+/* ── COMO FUNCIONA (STEPS) ───────────────────────────────────
+   3 passos numerados em grade. Linha verde conectando
+   os passos — escondida no mobile. *leo
+   ──────────────────────────────────────────────────────── */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 56px;
+  position: relative;
+}
+
+/* Linha horizontal que conecta os 3 passos */
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 38px;
+  left: calc(16.67% + 22px);
+  right: calc(16.67% + 22px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 230, 118, .4), rgba(0, 230, 118, .4), transparent);
+}
+
+.step {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  padding: 32px 26px;
+  text-align: center;
+  transition: all .3s;
+}
+
+.step:hover {
+  transform: translateY(-7px);
+  border-color: rgba(0, 230, 118, .28);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+}
+
+/* Número do passo em círculo verde *Jp */
+.step-n {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--green3);
+  border: 2px solid rgba(0, 230, 118, .25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--green);
+  margin: 0 auto 20px;
+}
+
+.step-t {
+  font-family: 'Syne', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.step-d {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.68;
+}
+
+/* Pílula de tempo no rodapé do passo */
+.step-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 14px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--green);
+  background: var(--green3);
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+
+
+/* ── BARRA DE CONFIANÇA (SOCIAL PROOF) ──────────────────────
+   Faixa com ícones e números que reforçam credibilidade.
+   Aparece abaixo da seção "Por quê". *leo
+   ──────────────────────────────────────────────────────── */
+.trust-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 56px;
+  padding: 28px;
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 18px;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.trust-icon { font-size: 22px; }
+
+.trust-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+/* Separador vertical entre os itens da barra */
+.trust-sep {
+  width: 1px;
+  height: 36px;
+  background: var(--border2);
+}
+
+
+/* ── DEPOIMENTOS ─────────────────────────────────────────────
+   3 cards de testemunho lado a lado. Linha verde que aparece
+   no topo do card ao passar o mouse. *Jp
+   ──────────────────────────────────────────────────────── */
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 56px;
+}
+
+.tc {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  padding: 28px;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Linha colorida que aparece no topo no hover *leo */
+.tc::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--green), var(--green2));
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.tc:hover {
+  border-color: rgba(0, 230, 118, .22);
+  transform: translateY(-5px);
+}
+
+.tc:hover::before { opacity: 1; }
+
+/* Estrelas em amarelo */
+.tc-stars {
+  color: var(--yellow);
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+.tc-quote {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.72;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+/* Autor do depoimento: avatar + nome + cargo */
+.tc-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Avatar colorido com iniciais *Jp */
+.tc-av {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  color: #000;
+  flex-shrink: 0;
+}
+
+.tc-name { font-size: 13.5px; font-weight: 700; }
+.tc-role { font-size: 11px; color: var(--dim); margin-top: 1px; }
+
+/* Badge de economia no rodapé do depoimento *leo */
+.tc-saved {
+  margin-top: 14px;
+  padding: 8px 12px;
+  background: rgba(0, 230, 118, .06);
+  border: 1px solid rgba(0, 230, 118, .18);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--green);
+}
+
+
+/* ── SEÇÃO DE SUPORTE ────────────────────────────────────────
+   Fundo com gradiente verde suave para destacar o suporte 24h.
+   Layout em 2 colunas: texto + card visual. *Jp
+   ──────────────────────────────────────────────────────── */
+.support-sec {
+  background: linear-gradient(135deg, rgba(0, 230, 118, .05), rgba(0, 230, 118, .02));
+  border-top: 1px solid rgba(0, 230, 118, .1);
+  border-bottom: 1px solid rgba(0, 230, 118, .1);
+}
+
+.support-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.support-features {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+/* Card de feature de suporte: ícone + texto *leo */
+.sf {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px;
+  background: var(--s2);
+  border: 1px solid var(--border2);
+  border-radius: 14px;
+  transition: all .3s;
+}
+
+.sf:hover { border-color: rgba(0, 230, 118, .22); }
+
+/* Ícone em fundo verde claro */
+.sf-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: var(--green3);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sf-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.sf-text { font-size: 12.5px; color: var(--muted); }
+
+/* Card visual de suporte no lado direito *Jp */
+.support-visual {
+  background: var(--s1);
+  border: 1px solid rgba(0, 230, 118, .2);
+  border-radius: 22px;
+  padding: 32px;
+  text-align: center;
+}
+
+.sv-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 230, 118, .1);
+  border: 1px solid rgba(0, 230, 118, .3);
+  border-radius: 999px;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 20px;
+}
+
+.sv-clock { font-size: 52px; margin-bottom: 16px; }
+
+.sv-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.sv-text {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+/* Botões de canais de suporte *leo */
+.sv-channels {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.sc {
+  padding: 8px 16px;
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all .2s;
+}
+
+.sc:hover          { border-color: var(--green); color: var(--green); }
+.sc-dot            { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+.sc.wpp:hover      { border-color: var(--wpp); color: var(--wpp); }
+.sc.wpp:hover .sc-dot { background: var(--wpp); }
+
+
+/* ── SEÇÃO DE PREÇOS ─────────────────────────────────────────
+   Toggle mensal/anual + 3 cards de plano.
+   O card "Pro" é maior e destacado. *Jp
+   ──────────────────────────────────────────────────────── */
+
+/* Toggle de cobrança mensal / anual */
+.billing-toggle {
+  display: inline-flex;
+  align-items: center;
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 999px;
+  padding: 4px;
+  margin-top: 28px;
+  position: relative;
+}
+
+.billing-toggle button {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .2s;
+  position: relative;
+  z-index: 2;
+}
+
+/* Texto fica preto quando o botão está ativo (sobre o verde) */
+.billing-toggle button.active { color: #000; }
+.billing-toggle button:hover:not(.active) { color: var(--text); }
+
+/* Bolha verde que desliza entre os botões do toggle *leo */
+.billing-indicator {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  width: calc(50% - 4px);
+  background: var(--green);
+  border-radius: 999px;
+  transition: transform .3s cubic-bezier(.4, 0, .2, 1);
+  z-index: 1;
+  box-shadow: 0 0 24px rgba(0, 230, 118, .3);
+}
+
+/* Classe JS para mover para o botão "Anual" */
+.billing-indicator.annual { transform: translateX(100%); }
+
+/* Pílula "-20%" ao lado do botão anual */
+.save-pill {
+  display: inline-block;
+  background: var(--green3);
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 20px;
+  margin-left: 8px;
+  letter-spacing: .05em;
+}
+
+/* Grade dos 3 cards de preço */
+.pricing {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 36px;
+  align-items: center;
+}
+
+/* Card de plano base */
+.pc {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 22px;
+  padding: 32px 28px;
+  transition: all .3s;
+}
+
+.pc:hover { transform: translateY(-5px); }
+
+/* Card em destaque (Pro) — maior e com brilho *Jp */
+.pc.feat {
+  border-color: rgba(0, 230, 118, .45);
+  background: linear-gradient(160deg, rgba(0, 230, 118, .07), var(--s1));
+  transform: scale(1.04);
+  box-shadow: 0 0 80px rgba(0, 230, 118, .1), 0 0 0 1px rgba(0, 230, 118, .2);
+}
+
+.pc.feat:hover { transform: scale(1.04) translateY(-6px); }
+
+/* Tag "⭐ Mais popular" */
+.pc-tag {
+  display: inline-block;
+  background: var(--green);
+  color: #000;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.pc-plan {
+  font-family: 'Syne', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 8px;
+}
+
+/* Container do preço: R$ + valor + /mês *leo */
+.pc-price {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  margin-bottom: 6px;
+}
+
+.pc-cur { font-size: 16px; color: var(--muted); }
+
+.pc-amt {
+  font-family: 'Syne', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.pc-per  { font-size: 13px; color: var(--muted); }
+
+/* Linha pequena de cobrança (ex: "Cobrado mensalmente") */
+.pc-billed { font-size: 11px; color: var(--dim); margin-bottom: 6px; height: 14px; }
+
+.pc-desc {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 24px;
+  min-height: 40px;
+  line-height: 1.55;
+}
+
+/* Lista de features incluídas no plano */
+.pc-feats {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.pc-feats li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+}
+
+/* Check verde e X cinza nas features *Jp */
+.ck { color: var(--green); flex-shrink: 0; margin-top: 2px; font-weight: 700; }
+.cx { color: var(--dim);   flex-shrink: 0; margin-top: 2px; }
+.td { color: var(--dim); }
+
+/* Badge de garantia dentro do card *leo */
+.guarantee-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: rgba(0, 230, 118, .05);
+  border: 1px solid rgba(0, 230, 118, .18);
+  border-radius: 10px;
+  margin-bottom: 16px;
+  font-size: 11.5px;
+  color: var(--green);
+  font-weight: 600;
+}
+
+.guarantee-badge svg { flex-shrink: 0; }
+
+/* Botões de ação dos planos */
+.btn-plan {
+  width: 100%;
+  padding: 13px;
+  border-radius: 11px;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all .2s;
+  border: none;
+}
+
+/* Botão fantasma (planos Básico e Família) */
+.btn-plan.out {
+  background: none;
+  border: 1px solid var(--border3);
+  color: var(--text);
+}
+
+.btn-plan.out:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+/* Botão sólido verde (plano Pro) *Jp */
+.btn-plan.sol {
+  background: var(--green);
+  border: none;
+  color: #000;
+  box-shadow: 0 0 24px rgba(0, 230, 118, .2);
+}
+
+.btn-plan.sol:hover {
+  background: var(--green2);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 32px rgba(0, 230, 118, .35);
+}
+
+/* Texto de suporte no rodapé do card de preço */
+.pc-support {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+
+/* ── FAQ ─────────────────────────────────────────────────────
+   Accordion de perguntas frequentes. Abre e fecha com JS,
+   animando o max-height para um efeito suave. *leo
+   ──────────────────────────────────────────────────────── */
+.faq {
+  max-width: 740px;
+  margin: 56px auto 0;
+}
+
+.fq { border-bottom: 1px solid var(--border2); }
+
+/* Botão da pergunta */
+.fq-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  text-align: left;
+  padding: 22px 2px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  transition: color .2s;
+}
+
+.fq-btn:hover { color: var(--green); }
+
+/* Ícone de + que vira X quando o item abre *Jp */
+.fq-ic {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--s2);
+  border: 1px solid var(--border3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--green);
+  flex-shrink: 0;
+  transition: all .25s;
+}
+
+.fq.open .fq-ic {
+  background: var(--green);
+  color: #000;
+  transform: rotate(45deg); /* Vira × */
+}
+
+/* Container da resposta — fecha/abre pelo max-height */
+.fq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s ease;
+}
+
+.fq-ai {
+  padding: 0 2px 20px;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.72;
+}
+
+
+/* ── CTA FINAL ───────────────────────────────────────────────
+   Seção de conversão no final da página com brilho central
+   e formulário de cadastro. *leo
+   ──────────────────────────────────────────────────────── */
+.cta-sec {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 110px clamp(16px, 5vw, 60px);
+}
+
+/* Halo verde centralizado no fundo */
+.cta-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(0, 230, 118, .08), transparent 70%);
+  pointer-events: none;
+}
+
+.cta-sec h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(36px, 5.5vw, 64px);
+  font-weight: 800;
+  line-height: 1.07;
+  margin-bottom: 18px;
+  letter-spacing: -.02em;
+}
+
+.cta-sec p {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 auto 48px;
+  line-height: 1.65;
+}
+
+
+/* ── FORMULÁRIO DE CADASTRO ─────────────────────────────────
+   Card centralizado com campos de nome, email e telefone.
+   Inclui checkbox de LGPD. *Jp
+   ──────────────────────────────────────────────────────── */
+.sform {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--s1);
+  border: 1px solid rgba(0, 230, 118, .2);
+  border-radius: 24px;
+  padding: 34px;
+  box-shadow: 0 0 80px rgba(0, 230, 118, .06);
+}
+
+.sform-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.sform-sub {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* Container de cada campo do formulário */
+.fg {
+  background: var(--s2);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 13px 16px;
+  margin-bottom: 10px;
+  transition: border-color .2s;
+}
+
+.fg:focus-within {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(0, 230, 118, .07);
+}
+
+/* Label do campo */
+.fl {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+
+/* Input de texto */
+.fi2 {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 14.5px;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+}
+
+.fi2::placeholder { color: #2e2e2e; }
+
+/* Mensagem de erro vermelho *leo */
+.ferr {
+  display: none;
+  background: rgba(255, 23, 68, .08);
+  border: 1px solid rgba(255, 23, 68, .22);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: var(--red);
+  margin-bottom: 10px;
+}
+
+/* Tela de sucesso após envio do formulário */
+.fsuccess { display: none; text-align: center; }
+.fsuccess .big { font-size: 56px; margin-bottom: 16px; }
+
+.fsuccess h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+
+.fsuccess p { font-size: 13.5px; color: var(--muted); }
+.fnote { text-align: center; font-size: 11px; color: #2d2d2d; margin-top: 12px; }
+
+.form-support {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+
+/* ── CHECKBOX DE LGPD ────────────────────────────────────────
+   Checkbox customizado que vai de cinza para verde ao marcar.
+   Obrigatório antes de enviar o formulário. *Jp
+   ──────────────────────────────────────────────────────── */
+.lgpd-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 14px 2px 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.lgpd-box input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--border3);
+  border-radius: 4px;
+  background: var(--s2);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 1px;
+  position: relative;
+  transition: all .2s;
+}
+
+/* Quando marcado: fundo verde + símbolo ✓ *leo */
+.lgpd-box input[type="checkbox"]:checked {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.lgpd-box input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.lgpd-text { font-size: 11.5px; color: var(--muted); line-height: 1.55; }
+.lgpd-text a { color: var(--green); text-decoration: none; }
+.lgpd-text a:hover { text-decoration: underline; }
+
+
+/* ── FOOTER ─────────────────────────────────────────────────
+   Rodapé simples com logo, nota de copyright e links legais.
+   *Jp
+   ──────────────────────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 44px clamp(16px, 5vw, 60px);
+}
+
+.footer-in {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-brand { display: flex; align-items: center; gap: 10px; }
+
+.footer-brand svg {
+  height: 28px;
+  width: 28px;
+  filter: drop-shadow(0 0 10px rgba(0, 230, 118, .35));
+}
+
+.footer-brand-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.footer-brand-text span { color: var(--green); }
+.footer-note { font-size: 12px; color: #333; }
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.footer-links a {
+  font-size: 12px;
+  color: #333;
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.footer-links a:hover { color: var(--text); }
+
+/* Ícones de redes sociais no footer *leo */
+.footer-social { display: flex; gap: 8px; }
+
+.footer-social a {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  color: #555;
+  transition: all .2s;
+}
+
+.footer-social a:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+
+/* ── BOTÃO FLUTUANTE DO WHATSAPP ─────────────────────────────
+   Fica fixo no canto inferior direito com animação de pulso.
+   Abre o WhatsApp ao clicar. *Jp
+   ──────────────────────────────────────────────────────── */
+.wpp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background: var(--wpp);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 8px 28px rgba(37, 211, 102, .4), 0 0 0 0 rgba(37, 211, 102, .6);
+  z-index: 150;
+  transition: transform .2s;
+  animation: wpp-pulse 2.5s infinite;
+}
+
+.wpp-float:hover { transform: scale(1.08); }
+
+/* Onda que se expande e desaparece ao redor do botão */
+@keyframes wpp-pulse {
+  0%  { box-shadow: 0 8px 28px rgba(37, 211, 102, .4), 0 0 0 0   rgba(37, 211, 102, .5); }
+  70% { box-shadow: 0 8px 28px rgba(37, 211, 102, .4), 0 0 0 18px rgba(37, 211, 102, 0); }
+  100%{ box-shadow: 0 8px 28px rgba(37, 211, 102, .4), 0 0 0 0   rgba(37, 211, 102, 0); }
+}
+
+
+/* ── BANNER DE COOKIES (LGPD) ────────────────────────────────
+   Aparece no canto inferior esquerdo após 1,5 segundo se o
+   usuário ainda não deu resposta sobre cookies. *leo
+   ──────────────────────────────────────────────────────── */
+.cookie-banner {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  max-width: 400px;
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 16px;
+  padding: 20px;
+  z-index: 150;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+  transform: translateY(200%); /* Começa fora da tela */
+  transition: transform .4s;
+}
+
+/* Entra na tela quando JS adiciona a classe .show */
+.cookie-banner.show { transform: translateY(0); }
+
+.cookie-text {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.cookie-text a { color: var(--green); text-decoration: none; }
+
+/* Botões de aceitar e recusar lado a lado */
+.cookie-btns { display: flex; gap: 8px; }
+
+.cookie-btn {
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  border: none;
+  transition: all .2s;
+}
+
+/* Botão "Aceitar" em verde */
+.cookie-btn.accept { background: var(--green); color: #000; flex: 1; }
+.cookie-btn.accept:hover { background: var(--green2); }
+
+/* Botão "Recusar" em cinza *Jp */
+.cookie-btn.reject {
+  background: var(--s2);
+  color: var(--muted);
+  border: 1px solid var(--border2);
+}
+
+.cookie-btn.reject:hover { color: var(--text); }
+
+
+/* ── ANIMAÇÕES DE ENTRADA (REVEAL ON SCROLL) ─────────────────
+   Elementos começam invisíveis e sobem ao entrar na viewport.
+   JS usa IntersectionObserver para adicionar .vis. *leo
+   ──────────────────────────────────────────────────────── */
+.rv {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+/* Delay intermediário para sequência escalonada *Jp */
+.rv2 {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .7s .13s ease, transform .7s .13s ease;
+}
+
+/* Delay maior para o terceiro elemento da sequência */
+.rv3 {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .7s .24s ease, transform .7s .24s ease;
+}
+
+/* Classe adicionada pelo JS quando o elemento entra na tela */
+.rv.vis, .rv2.vis, .rv3.vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ── RESPONSIVIDADE ──────────────────────────────────────────
+   Ajustes para tablets (até 1000px), celulares maiores
+   (até 780px) e celulares menores (até 640px). *leo
+   ──────────────────────────────────────────────────────── */
+
+/* TABLET */
+@media (max-width: 1000px) {
+  /* Passa de 3 colunas pra 2 */
+  .pain-grid, .steps, .testimonials, .pricing {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Seções de 2 colunas viram 1 coluna */
+  .feat-wrap, .why-grid, .support-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* Esconde os cards flutuantes (não cabem no layout) *Jp */
+  .mf-tr, .mf-bl { display: none; }
+
+  /* Remove a linha entre os passos */
+  .steps::before { display: none; }
+
+  /* Card Pro não escala mais (não tem espaço) */
+  .pc.feat { transform: none; }
+
+  /* Stats do hero viram 2x2 */
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+  .hstat { border-right: none; border-bottom: 1px solid var(--border2); }
+  .hstat:nth-child(odd) { border-right: 1px solid var(--border2); }
+  .hstat:nth-last-child(-n+2) { border-bottom: none; }
+}
+
+/* CELULAR GRANDE */
+@media (max-width: 780px) {
+  /* Esconde os links e o botão "Entrar" da nav */
+  nav .nav-links, .nav-r .btn-g { display: none; }
+
+  /* Mostra o hamburguer */
+  .hamburger { display: flex; }
+
+  /* Tabela comparativa fica mais compacta */
+  .compare-table th, .compare-table td { padding: 12px 10px; font-size: 12px; }
+  .compare-table th:first-child, .compare-table td.feat { font-size: 12px; }
+}
+
+/* CELULAR PEQUENO *Jp */
+@media (max-width: 640px) {
+  /* Tudo em 1 coluna */
+  .pain-grid, .steps, .testimonials, .pricing { grid-template-columns: 1fr; }
+
+  /* Stats do hero mantém 2 colunas */
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+
+  /* Esconde separadores da barra de confiança */
+  .trust-sep  { display: none; }
+  .trust-bar  { gap: 20px; }
+
+  /* Footer empilha verticalmente e centraliza */
+  .footer-in    { flex-direction: column; text-align: center; }
+  .footer-links { justify-content: center; flex-wrap: wrap; }
+
+  /* why-grid também vira 1 coluna */
+  .why-grid { grid-template-columns: 1fr; }
+
+  /* Bordas dos stats no mobile */
+  .hstat:nth-child(odd) { border-right: 1px solid var(--border2); }
+
+  /* Cookie banner ocupa largura total no mobile */
+  .cookie-banner { left: 16px; right: 16px; max-width: none; }
+
+  /* Botão WhatsApp menor no mobile */
+  .wpp-float { bottom: 16px; right: 16px; width: 52px; height: 52px; }
+}

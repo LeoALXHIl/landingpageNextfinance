@@ -1,473 +1,107 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NextFinance — Controle Financeiro que Funciona de Verdade</title>
 
-<!-- SEO META TAGS -->
-<meta name="description" content="Controle seus gastos sem planilha e sem conectar banco. App financeiro gratuito feito no Brasil. Suporte 24h em português. Plano grátis para sempre.">
-<meta name="keywords" content="controle financeiro, app de gastos, planilha financeira, finanças pessoais, app financeiro Brasil, controle de gastos grátis">
-<meta name="author" content="NextFinance">
-<meta name="robots" content="index, follow">
+  <!-- Codificação e viewport — sempre os primeiros *leo -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- OPEN GRAPH / FACEBOOK -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://nextfinance.app/">
-<meta property="og:title" content="NextFinance — Controle Financeiro que Funciona de Verdade">
-<meta property="og:description" content="Controle seus gastos sem planilha e sem conectar banco. Plano grátis para sempre, suporte 24h em português.">
-<meta property="og:locale" content="pt_BR">
+  <title>NextFinance — Controle Financeiro que Funciona de Verdade</title>
 
-<!-- TWITTER CARD -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="NextFinance — Controle Financeiro que Funciona de Verdade">
-<meta name="twitter:description" content="Controle seus gastos sem planilha e sem conectar banco. Plano grátis para sempre.">
+  <!-- ── SEO: Meta tags para mecanismos de busca ──────────────
+       Esses dados aparecem no Google quando alguém pesquisa
+       o produto. Quanto mais preciso, melhor o ranqueamento. *Jp
+  ─────────────────────────────────────────────────────────── -->
+  <meta name="description" content="Controle seus gastos sem planilha e sem conectar banco. App financeiro gratuito feito no Brasil. Suporte 24h em português. Plano grátis para sempre.">
+  <meta name="keywords"    content="controle financeiro, app de gastos, planilha financeira, finanças pessoais, app financeiro Brasil, controle de gastos grátis">
+  <meta name="author"      content="NextFinance">
+  <meta name="robots"      content="index, follow">
 
-<!-- SCHEMA.ORG -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "NextFinance",
-  "applicationCategory": "FinanceApplication",
-  "operatingSystem": "Web",
-  "description": "Controle financeiro pessoal sem conexão bancária, feito no Brasil.",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "BRL"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "1200"
+  <!-- ── OPEN GRAPH: Como o link aparece no Facebook/WhatsApp ─
+       Título, descrição e tipo de conteúdo ao compartilhar. *leo
+  ─────────────────────────────────────────────────────────── -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://nextfinance.app/">
+  <meta property="og:title"       content="NextFinance — Controle Financeiro que Funciona de Verdade">
+  <meta property="og:description" content="Controle seus gastos sem planilha e sem conectar banco. Plano grátis para sempre, suporte 24h em português.">
+  <meta property="og:locale"      content="pt_BR">
+
+  <!-- ── TWITTER CARD: Como o link aparece no Twitter/X ─────── -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="NextFinance — Controle Financeiro que Funciona de Verdade">
+  <meta name="twitter:description" content="Controle seus gastos sem planilha e sem conectar banco. Plano grátis para sempre.">
+
+  <!-- ── SCHEMA.ORG: Dados estruturados para o Google ─────────
+       Ajuda o Google a entender que é um software, com preço
+       e avaliações. Pode gerar rich snippets nos resultados. *Jp
+  ─────────────────────────────────────────────────────────── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "NextFinance",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "description": "Controle financeiro pessoal sem conexão bancária, feito no Brasil.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "BRL"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "1200"
+    }
   }
-}
-</script>
+  </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#060606;--s1:#0e0e0e;--s2:#151515;--s3:#1a1a1a;
-  --border:#1e1e1e;--border2:#2a2a2a;--border3:#333;
-  --green:#00e676;--green2:#00c853;--green3:rgba(0,230,118,.07);
-  --greenglow:rgba(0,230,118,.18);--greensoft:rgba(0,230,118,.04);
-  --text:#f0f0f0;--muted:#777;--dim:#3a3a3a;--dimmer:#2a2a2a;
-  --red:#ff1744;--yellow:#ffd740;--blue:#40c4ff;
-  --wpp:#25d366;
-}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden;}
-::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:var(--border3);}
+  <!-- ── FONTES DO GOOGLE ──────────────────────────────────────
+       Syne: títulos grandes e pesados (font-weight 800)
+       DM Sans: corpo do texto, leve e legível *leo
+  ─────────────────────────────────────────────────────────── -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
 
-/* ── NOISE OVERLAY ── */
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.4;}
+  <!-- ── CSS EXTERNO ───────────────────────────────────────────
+       Todo o estilo está separado em style.css.
+       Mantém o HTML limpo e mais fácil de manter. *Jp
+  ─────────────────────────────────────────────────────────── -->
+  <link rel="stylesheet" href="style.css">
 
-/* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,52px);background:rgba(6,6,6,.92);backdrop-filter:blur(28px);border-bottom:1px solid var(--border);transition:all .3s;}
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.nav-logo svg{height:38px;width:38px;filter:drop-shadow(0 0 18px rgba(0,230,118,.5));transition:filter .3s;}
-.nav-logo:hover svg{filter:drop-shadow(0 0 28px rgba(0,230,118,.9));}
-.nav-logo-text{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--text);letter-spacing:-.02em;}
-.nav-logo-text span{color:var(--green);}
-.nav-links{display:flex;gap:32px;list-style:none;}
-.nav-links a{text-decoration:none;color:var(--muted);font-size:13.5px;font-weight:500;transition:color .2s;white-space:nowrap;position:relative;}
-.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .2s;}
-.nav-links a:hover{color:var(--text);}
-.nav-links a:hover::after{transform:scaleX(1);}
-.nav-r{display:flex;align-items:center;gap:10px;}
-.btn-g{padding:8px 20px;border:1px solid var(--border3);border-radius:8px;color:var(--text);font-size:13px;font-weight:600;background:none;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;transition:all .2s;}
-.btn-g:hover{border-color:var(--green);color:var(--green);}
-.btn-p{padding:9px 24px;border:none;border-radius:8px;background:var(--green);color:#000;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;transition:all .2s;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;box-shadow:0 0 20px rgba(0,230,118,.2);}
-.btn-p:hover{background:var(--green2);transform:translateY(-1px);box-shadow:0 8px 32px rgba(0,230,118,.4);}
-
-/* HAMBURGER */
-.hamburger{display:none;flex-direction:column;gap:5px;width:36px;height:36px;background:none;border:1px solid var(--border3);border-radius:8px;cursor:pointer;align-items:center;justify-content:center;padding:0;transition:all .2s;}
-.hamburger:hover{border-color:var(--green);}
-.hamburger span{width:18px;height:2px;background:var(--text);border-radius:2px;transition:all .25s;}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.hamburger.open span:nth-child(2){opacity:0;}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-
-/* MOBILE MENU PANEL */
-.mobile-menu{position:fixed;top:68px;left:0;right:0;background:rgba(6,6,6,.98);backdrop-filter:blur(28px);border-bottom:1px solid var(--border2);padding:24px;z-index:199;transform:translateY(-120%);transition:transform .3s;display:flex;flex-direction:column;gap:4px;}
-.mobile-menu.open{transform:translateY(0);}
-.mobile-menu a{padding:14px 18px;border-radius:10px;color:var(--text);font-size:15px;font-weight:500;text-decoration:none;transition:background .2s;}
-.mobile-menu a:hover{background:var(--s2);color:var(--green);}
-.mobile-menu-cta{margin-top:10px;padding:14px;background:var(--green);color:#000;border-radius:10px;text-align:center;font-weight:700;text-decoration:none;font-size:14.5px;}
-
-/* ── HERO ── */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px clamp(16px,5vw,60px) 90px;position:relative;overflow:hidden;}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,230,118,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,230,118,.03) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 70% at 50% 0%,black 30%,transparent 100%);}
-.hero-glow{position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(0,230,118,.11) 0%,transparent 65%);top:0%;left:50%;transform:translateX(-50%);pointer-events:none;animation:pulse-glow 6s ease-in-out infinite;}
-.hero-glow2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,230,118,.06) 0%,transparent 65%);bottom:10%;right:10%;pointer-events:none;animation:pulse-glow 8s ease-in-out infinite reverse;}
-@keyframes pulse-glow{0%,100%{transform:translateX(-50%) scale(1);opacity:1}50%{transform:translateX(-50%) scale(1.08);opacity:.7}}
-
-.badge{display:inline-flex;align-items:center;gap:8px;background:var(--s2);border:1px solid rgba(0,230,118,.28);border-radius:999px;padding:7px 18px;margin-bottom:30px;font-size:11.5px;font-weight:600;color:var(--green);animation:fu .8s ease both;}
-.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 1.8s infinite;flex-shrink:0;}
-@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 8px var(--green)}50%{opacity:.25;box-shadow:none}}
-
-.hero h1{font-family:'Syne',sans-serif;font-size:clamp(42px,8vw,96px);font-weight:800;line-height:1.01;margin-bottom:24px;animation:fu .8s .08s ease both;letter-spacing:-.03em;}
-.hero h1 em{font-style:normal;color:var(--green);text-shadow:0 0 80px rgba(0,230,118,.4);}
-.hero-sub{font-size:clamp(15px,2vw,20px);color:var(--muted);max-width:600px;margin:0 auto 14px;animation:fu .8s .14s ease both;line-height:1.65;}
-.hero-tagline{font-size:13px;color:#444;margin-bottom:38px;animation:fu .8s .18s ease both;}
-.hero-tagline span{color:var(--green);font-weight:600;}
-
-.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fu .8s .24s ease both;}
-.btn-xl{padding:15px 38px;border:none;border-radius:12px;background:var(--green);color:#000;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:8px;box-shadow:0 0 30px rgba(0,230,118,.25);}
-.btn-xl:hover{background:var(--green2);transform:translateY(-2px);box-shadow:0 12px 48px rgba(0,230,118,.45);}
-.btn-xl2{padding:15px 32px;border:1px solid var(--border3);border-radius:12px;background:none;color:var(--text);font-size:15px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:8px;}
-.btn-xl2:hover{border-color:var(--green);color:var(--green);}
-
-/* SUPPORT BADGE */
-.support-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(0,230,118,.06);border:1px solid rgba(0,230,118,.2);border-radius:999px;padding:6px 16px;margin-top:18px;font-size:11.5px;color:var(--green);animation:fu .8s .3s ease both;}
-.support-dot{width:6px;height:6px;border-radius:50%;background:#00e676;animation:blink 1.5s infinite;}
-
-.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:72px;border:1px solid var(--border2);border-radius:20px;background:var(--s1);overflow:hidden;animation:fu .8s .32s ease both;box-shadow:0 20px 60px rgba(0,0,0,.4);}
-.hstat{padding:24px;text-align:center;border-right:1px solid var(--border2);position:relative;}
-.hstat:last-child{border-right:none;}
-.hstat-n{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--green);margin-bottom:4px;line-height:1;}
-.hstat-l{font-size:11px;color:var(--muted);font-weight:500;}
-@keyframes fu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── STRIP ── */
-.strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;background:var(--s1);padding:14px 0;}
-.strip-track{display:flex;gap:0;white-space:nowrap;animation:marquee 26s linear infinite;}
-.strip-item{display:inline-flex;align-items:center;gap:9px;padding:0 32px;font-size:11.5px;font-weight:600;color:var(--dim);flex-shrink:0;}
-.sdot{width:4px;height:4px;border-radius:50%;background:var(--green);}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* ── SECCIONES ── */
-.section{padding:clamp(70px,9vw,120px) clamp(16px,5vw,60px);position:relative;}
-.container{max-width:1160px;margin:0 auto;}
-.slab{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:10px;}
-.stitle{font-family:'Syne',sans-serif;font-size:clamp(30px,4.5vw,52px);font-weight:800;line-height:1.07;margin-bottom:16px;letter-spacing:-.02em;}
-.sdesc{font-size:16px;color:var(--muted);max-width:580px;line-height:1.72;}
-.text-c{text-align:center;}
-.mx-a{margin-left:auto;margin-right:auto;}
-
-/* MICRO-CTA */
-.micro-cta{text-align:center;margin-top:48px;}
-.micro-cta a{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:var(--green3);border:1px solid rgba(0,230,118,.3);border-radius:10px;color:var(--green);font-size:13.5px;font-weight:700;text-decoration:none;transition:all .2s;}
-.micro-cta a:hover{background:rgba(0,230,118,.12);transform:translateY(-1px);}
-
-/* ── WHY SECTION ── */
-.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:56px;align-items:stretch;}
-.why-big{background:var(--s1);border:1px solid var(--border2);border-radius:22px;padding:40px;position:relative;overflow:hidden;transition:all .3s;}
-.why-big::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 0% 0%,rgba(0,230,118,.06),transparent 60%);pointer-events:none;}
-.why-big:hover{border-color:rgba(0,230,118,.25);transform:translateY(-4px);}
-.why-icon{font-size:48px;margin-bottom:20px;display:block;}
-.why-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:12px;line-height:1.2;}
-.why-text{font-size:14px;color:var(--muted);line-height:1.75;}
-.why-highlight{margin-top:16px;padding:12px 16px;background:var(--green3);border:1px solid rgba(0,230,118,.2);border-radius:10px;font-size:13px;color:var(--green);font-weight:600;}
-
-.why-col{display:flex;flex-direction:column;gap:18px;}
-.why-small{background:var(--s1);border:1px solid var(--border2);border-radius:18px;padding:26px;display:flex;gap:18px;align-items:flex-start;transition:all .3s;}
-.why-small:hover{border-color:rgba(0,230,118,.2);transform:translateX(4px);}
-.ws-icon{font-size:28px;flex-shrink:0;width:52px;height:52px;background:var(--s2);border:1px solid var(--border2);border-radius:14px;display:flex;align-items:center;justify-content:center;}
-.ws-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:5px;}
-.ws-text{font-size:13px;color:var(--muted);line-height:1.65;}
-
-/* ── PAIN ── */
-.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px;}
-.pcard{background:var(--s1);border:1px solid var(--border2);border-radius:20px;padding:32px 26px;transition:all .3s;position:relative;overflow:hidden;cursor:default;}
-.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--red),transparent);opacity:0;transition:opacity .3s;}
-.pcard::after{content:'↓';position:absolute;bottom:24px;right:24px;font-size:20px;color:var(--green);opacity:0;transform:translateY(6px);transition:all .3s;}
-.pcard:hover{border-color:rgba(0,230,118,.2);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.3);}
-.pcard:hover::before{opacity:1;}
-.pcard:hover::after{opacity:1;transform:translateY(0);}
-.pcard-icon{font-size:38px;margin-bottom:18px;display:block;}
-.pcard-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:10px;}
-.pcard-text{font-size:13px;color:var(--muted);line-height:1.72;}
-.pcard-solve{margin-top:16px;font-size:12px;font-weight:700;color:var(--green);display:flex;align-items:center;gap:6px;opacity:.8;}
-
-/* ── COMPARISON TABLE ── */
-.compare-wrap{background:var(--s1);border:1px solid var(--border2);border-radius:22px;overflow:hidden;margin-top:56px;}
-.compare-table{width:100%;border-collapse:collapse;}
-.compare-table thead{background:linear-gradient(160deg,rgba(0,230,118,.08),transparent);}
-.compare-table th{padding:22px 20px;font-size:13px;font-weight:700;text-align:left;border-bottom:1px solid var(--border2);}
-.compare-table th:first-child{font-family:'Syne',sans-serif;color:var(--muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase;}
-.compare-table th.us{color:var(--green);text-align:center;font-family:'Syne',sans-serif;font-size:15px;}
-.compare-table th.them{color:var(--muted);text-align:center;font-family:'Syne',sans-serif;}
-.compare-table td{padding:18px 20px;font-size:13.5px;border-bottom:1px solid var(--border);vertical-align:middle;}
-.compare-table tbody tr:last-child td{border-bottom:none;}
-.compare-table tbody tr:hover{background:rgba(0,230,118,.02);}
-.compare-table td.feat{color:var(--text);font-weight:500;}
-.compare-table td.us{text-align:center;color:var(--green);font-weight:700;font-size:15px;background:rgba(0,230,118,.03);}
-.compare-table td.them{text-align:center;color:var(--muted);}
-.check-yes{display:inline-block;width:24px;height:24px;line-height:24px;border-radius:50%;background:var(--green3);color:var(--green);font-weight:800;}
-.check-no{display:inline-block;width:24px;height:24px;line-height:24px;border-radius:50%;background:rgba(255,23,68,.1);color:var(--red);font-weight:800;}
-
-/* ── FEATURES ── */
-.feat-wrap{display:grid;grid-template-columns:1fr 1.08fr;gap:60px;align-items:center;}
-.feat-list{display:flex;flex-direction:column;gap:6px;}
-.fi{display:flex;gap:16px;padding:18px;border-radius:14px;border:1px solid transparent;cursor:pointer;transition:all .2s;}
-.fi:hover,.fi.on{background:var(--s1);border-color:var(--border2);}
-.fi.on{border-color:rgba(0,230,118,.25);background:rgba(0,230,118,.03);}
-.fi.on .fi-icon{background:var(--green3);border-color:rgba(0,230,118,.3);color:var(--green);}
-.fi-icon{width:46px;height:46px;border-radius:12px;background:var(--s2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;transition:all .2s;}
-.fi-body h3{font-family:'Syne',sans-serif;font-size:14.5px;font-weight:700;margin-bottom:4px;}
-.fi-body p{font-size:12.5px;color:var(--muted);line-height:1.65;}
-
-/* MOCKUP */
-.mock-wrap{position:relative;}
-.mock-card{background:var(--s1);border:1px solid var(--border2);border-radius:24px;overflow:hidden;box-shadow:0 48px 120px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.03);}
-.mock-hd{background:var(--s2);border-bottom:1px solid var(--border2);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;}
-.mock-dots{display:flex;gap:7px;}
-.md{width:10px;height:10px;border-radius:50%;}
-.mock-body{padding:22px;}
-.mock-rl{font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-.mock-total{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--green);margin-bottom:2px;text-shadow:0 0 40px rgba(0,230,118,.3);}
-.mock-sub{font-size:11.5px;color:var(--muted);margin-bottom:18px;display:flex;align-items:center;gap:6px;}
-.trend-down{color:#00e676;font-size:12px;font-weight:700;}
-.mock-bars{display:flex;flex-direction:column;gap:10px;}
-.mbr{display:flex;align-items:center;gap:10px;}
-.mbl{width:80px;font-size:11px;color:var(--muted);flex-shrink:0;}
-.mbb{flex:1;height:6px;background:var(--s3);border-radius:6px;overflow:hidden;}
-.mbf{height:100%;border-radius:6px;animation:grow 1.6s 1.2s ease both;transform-origin:left;transform:scaleX(0);}
-@keyframes grow{to{transform:scaleX(1)}}
-.mbv{width:60px;font-size:11px;font-weight:600;text-align:right;color:var(--muted);}
-.mock-cards{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:9px;}
-.mc{background:var(--s2);border:1px solid var(--border2);border-radius:12px;padding:13px;}
-.mc-l{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
-.mc-v{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;}
-
-.mock-float{position:absolute;background:var(--s2);border:1px solid var(--border2);border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 12px 40px rgba(0,0,0,.5);}
-.mf-tr{top:-20px;right:-20px;animation:f1 4.5s ease-in-out infinite;}
-.mf-bl{bottom:-20px;left:-20px;animation:f2 5.2s ease-in-out infinite;}
-@keyframes f1{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes f2{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
-.mf-icon{font-size:22px;}
-.mf-l{font-size:10px;color:var(--muted);}
-.mf-v{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--green);}
-
-/* ── STEPS ── */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px;position:relative;}
-.steps::before{content:'';position:absolute;top:38px;left:calc(16.67% + 22px);right:calc(16.67% + 22px);height:1px;background:linear-gradient(90deg,transparent,rgba(0,230,118,.4),rgba(0,230,118,.4),transparent);}
-.step{background:var(--s1);border:1px solid var(--border2);border-radius:20px;padding:32px 26px;text-align:center;transition:all .3s;}
-.step:hover{transform:translateY(-7px);border-color:rgba(0,230,118,.28);box-shadow:0 20px 60px rgba(0,0,0,.25);}
-.step-n{width:56px;height:56px;border-radius:50%;background:var(--green3);border:2px solid rgba(0,230,118,.25);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--green);margin:0 auto 20px;}
-.step-t{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:10px;}
-.step-d{font-size:13px;color:var(--muted);line-height:1.68;}
-.step-time{display:inline-flex;align-items:center;gap:5px;margin-top:14px;font-size:11.5px;font-weight:700;color:var(--green);background:var(--green3);padding:5px 12px;border-radius:999px;}
-
-/* ── SOCIAL PROOF ── */
-.trust-bar{display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap;margin-top:56px;padding:28px;background:var(--s1);border:1px solid var(--border2);border-radius:18px;}
-.trust-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);}
-.trust-icon{font-size:22px;}
-.trust-num{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--text);}
-.trust-sep{width:1px;height:36px;background:var(--border2);}
-
-/* ── TESTIMONIALS ── */
-.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px;}
-.tc{background:var(--s1);border:1px solid var(--border2);border-radius:20px;padding:28px;transition:all .3s;position:relative;overflow:hidden;}
-.tc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),var(--green2));opacity:0;transition:opacity .3s;}
-.tc:hover{border-color:rgba(0,230,118,.22);transform:translateY(-5px);}
-.tc:hover::before{opacity:1;}
-.tc-stars{color:var(--yellow);font-size:13px;letter-spacing:2px;margin-bottom:14px;}
-.tc-quote{font-size:14px;color:var(--muted);line-height:1.72;margin-bottom:20px;font-style:italic;}
-.tc-author{display:flex;align-items:center;gap:12px;}
-.tc-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#000;flex-shrink:0;}
-.tc-name{font-size:13.5px;font-weight:700;}
-.tc-role{font-size:11px;color:var(--dim);margin-top:1px;}
-.tc-saved{margin-top:14px;padding:8px 12px;background:rgba(0,230,118,.06);border:1px solid rgba(0,230,118,.18);border-radius:8px;font-size:12px;font-weight:700;color:var(--green);}
-
-/* ── SUPPORT SECTION ── */
-.support-sec{background:linear-gradient(135deg,rgba(0,230,118,.05),rgba(0,230,118,.02));border-top:1px solid rgba(0,230,118,.1);border-bottom:1px solid rgba(0,230,118,.1);}
-.support-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;}
-.support-features{display:flex;flex-direction:column;gap:16px;margin-top:32px;}
-.sf{display:flex;gap:16px;align-items:flex-start;padding:18px;background:var(--s2);border:1px solid var(--border2);border-radius:14px;transition:all .3s;}
-.sf:hover{border-color:rgba(0,230,118,.22);}
-.sf-icon{font-size:24px;flex-shrink:0;width:48px;height:48px;background:var(--green3);border-radius:12px;display:flex;align-items:center;justify-content:center;}
-.sf-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:4px;}
-.sf-text{font-size:12.5px;color:var(--muted);}
-
-.support-visual{background:var(--s1);border:1px solid rgba(0,230,118,.2);border-radius:22px;padding:32px;text-align:center;}
-.sv-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.3);border-radius:999px;padding:8px 20px;font-size:13px;font-weight:700;color:var(--green);margin-bottom:20px;}
-.sv-clock{font-size:52px;margin-bottom:16px;}
-.sv-title{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:10px;}
-.sv-text{font-size:13.5px;color:var(--muted);line-height:1.7;margin-bottom:24px;}
-.sv-channels{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
-.sc{padding:8px 16px;border:1px solid var(--border2);border-radius:8px;font-size:12px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:6px;text-decoration:none;transition:all .2s;}
-.sc:hover{border-color:var(--green);color:var(--green);}
-.sc-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
-.sc.wpp:hover{border-color:var(--wpp);color:var(--wpp);}
-.sc.wpp:hover .sc-dot{background:var(--wpp);}
-
-/* ── PRICING ── */
-/* Billing toggle */
-.billing-toggle{display:inline-flex;align-items:center;background:var(--s1);border:1px solid var(--border2);border-radius:999px;padding:4px;margin-top:28px;position:relative;}
-.billing-toggle button{background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;padding:9px 22px;border-radius:999px;cursor:pointer;transition:all .2s;position:relative;z-index:2;}
-.billing-toggle button.active{color:#000;}
-.billing-toggle button:hover:not(.active){color:var(--text);}
-.billing-indicator{position:absolute;top:4px;bottom:4px;width:calc(50% - 4px);background:var(--green);border-radius:999px;transition:transform .3s cubic-bezier(.4,0,.2,1);z-index:1;box-shadow:0 0 24px rgba(0,230,118,.3);}
-.billing-indicator.annual{transform:translateX(100%);}
-.save-pill{display:inline-block;background:var(--green3);color:var(--green);font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px;margin-left:8px;letter-spacing:.05em;}
-
-.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;align-items:center;}
-.pc{background:var(--s1);border:1px solid var(--border2);border-radius:22px;padding:32px 28px;transition:all .3s;}
-.pc:hover{transform:translateY(-5px);}
-.pc.feat{border-color:rgba(0,230,118,.45);background:linear-gradient(160deg,rgba(0,230,118,.07),var(--s1));transform:scale(1.04);box-shadow:0 0 80px rgba(0,230,118,.1),0 0 0 1px rgba(0,230,118,.2);}
-.pc.feat:hover{transform:scale(1.04) translateY(-6px);}
-.pc-tag{display:inline-block;background:var(--green);color:#000;font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:16px;}
-.pc-plan{font-family:'Syne',sans-serif;font-size:12.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;}
-.pc-price{display:flex;align-items:baseline;gap:3px;margin-bottom:6px;}
-.pc-cur{font-size:16px;color:var(--muted);}
-.pc-amt{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;line-height:1;}
-.pc-per{font-size:13px;color:var(--muted);}
-.pc-billed{font-size:11px;color:var(--dim);margin-bottom:6px;height:14px;}
-.pc-desc{font-size:13px;color:var(--muted);margin-bottom:24px;min-height:40px;line-height:1.55;}
-.pc-feats{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
-.pc-feats li{display:flex;align-items:flex-start;gap:8px;font-size:13px;}
-.ck{color:var(--green);flex-shrink:0;margin-top:2px;font-weight:700;}
-.cx{color:var(--dim);flex-shrink:0;margin-top:2px;}
-.td{color:var(--dim);}
-.guarantee-badge{display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(0,230,118,.05);border:1px solid rgba(0,230,118,.18);border-radius:10px;margin-bottom:16px;font-size:11.5px;color:var(--green);font-weight:600;}
-.guarantee-badge svg{flex-shrink:0;}
-.btn-plan{width:100%;padding:13px;border-radius:11px;font-size:14.5px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;border:none;}
-.btn-plan.out{background:none;border:1px solid var(--border3);color:var(--text);}
-.btn-plan.out:hover{border-color:var(--green);color:var(--green);}
-.btn-plan.sol{background:var(--green);border:none;color:#000;box-shadow:0 0 24px rgba(0,230,118,.2);}
-.btn-plan.sol:hover{background:var(--green2);transform:translateY(-1px);box-shadow:0 8px 32px rgba(0,230,118,.35);}
-.pc-support{text-align:center;margin-top:12px;font-size:11px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:5px;}
-
-/* ── FAQ ── */
-.faq{max-width:740px;margin:56px auto 0;}
-.fq{border-bottom:1px solid var(--border2);}
-.fq-btn{width:100%;background:none;border:none;color:var(--text);font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;text-align:left;padding:22px 2px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color .2s;}
-.fq-btn:hover{color:var(--green);}
-.fq-ic{width:28px;height:28px;border-radius:50%;background:var(--s2);border:1px solid var(--border3);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--green);flex-shrink:0;transition:all .25s;}
-.fq.open .fq-ic{background:var(--green);color:#000;transform:rotate(45deg);}
-.fq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
-.fq-ai{padding:0 2px 20px;font-size:14px;color:var(--muted);line-height:1.72;}
-
-/* ── CTA ── */
-.cta-sec{position:relative;overflow:hidden;text-align:center;padding:110px clamp(16px,5vw,60px);}
-.cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(0,230,118,.08),transparent 70%);pointer-events:none;}
-.cta-sec h2{font-family:'Syne',sans-serif;font-size:clamp(36px,5.5vw,64px);font-weight:800;line-height:1.07;margin-bottom:18px;letter-spacing:-.02em;}
-.cta-sec p{font-size:18px;color:var(--muted);max-width:520px;margin:0 auto 48px;line-height:1.65;}
-
-/* FORM */
-.sform{max-width:480px;margin:0 auto;background:var(--s1);border:1px solid rgba(0,230,118,.2);border-radius:24px;padding:34px;box-shadow:0 0 80px rgba(0,230,118,.06);}
-.sform-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;text-align:center;margin-bottom:6px;}
-.sform-sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:24px;}
-.fg{background:var(--s2);border:1px solid var(--border2);border-radius:12px;padding:13px 16px;margin-bottom:10px;transition:border-color .2s;}
-.fg:focus-within{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,230,118,.07);}
-.fl{font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
-.fi2{width:100%;background:transparent;border:none;color:var(--text);font-size:14.5px;font-family:'DM Sans',sans-serif;outline:none;}
-.fi2::placeholder{color:#2e2e2e;}
-.ferr{display:none;background:rgba(255,23,68,.08);border:1px solid rgba(255,23,68,.22);border-radius:10px;padding:10px 16px;font-size:13px;color:var(--red);margin-bottom:10px;}
-.fsuccess{display:none;text-align:center;}
-.fsuccess .big{font-size:56px;margin-bottom:16px;}
-.fsuccess h3{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--green);margin-bottom:8px;}
-.fsuccess p{font-size:13.5px;color:var(--muted);}
-.fnote{text-align:center;font-size:11px;color:#2d2d2d;margin-top:12px;}
-.form-support{text-align:center;margin-top:16px;font-size:12px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px;}
-
-/* LGPD CHECKBOX */
-.lgpd-box{display:flex;align-items:flex-start;gap:10px;margin:14px 2px 12px;cursor:pointer;user-select:none;}
-.lgpd-box input[type="checkbox"]{appearance:none;-webkit-appearance:none;width:18px;height:18px;border:1.5px solid var(--border3);border-radius:4px;background:var(--s2);cursor:pointer;flex-shrink:0;margin-top:1px;position:relative;transition:all .2s;}
-.lgpd-box input[type="checkbox"]:checked{background:var(--green);border-color:var(--green);}
-.lgpd-box input[type="checkbox"]:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#000;font-size:13px;font-weight:800;}
-.lgpd-text{font-size:11.5px;color:var(--muted);line-height:1.55;}
-.lgpd-text a{color:var(--green);text-decoration:none;}
-.lgpd-text a:hover{text-decoration:underline;}
-
-/* ── FOOTER ── */
-footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
-.footer-in{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
-.footer-brand{display:flex;align-items:center;gap:10px;}
-.footer-brand svg{height:28px;width:28px;filter:drop-shadow(0 0 10px rgba(0,230,118,.35));}
-.footer-brand-text{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--text);}
-.footer-brand-text span{color:var(--green);}
-.footer-note{font-size:12px;color:#333;}
-.footer-links{display:flex;gap:24px;align-items:center;}
-.footer-links a{font-size:12px;color:#333;text-decoration:none;transition:color .2s;}
-.footer-links a:hover{color:var(--text);}
-.footer-social{display:flex;gap:8px;}
-.footer-social a{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border2);border-radius:8px;color:#555;transition:all .2s;}
-.footer-social a:hover{border-color:var(--green);color:var(--green);}
-
-/* ── WHATSAPP FLOATING ── */
-.wpp-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;background:var(--wpp);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;box-shadow:0 8px 28px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,.6);z-index:150;transition:transform .2s;animation:wpp-pulse 2.5s infinite;}
-.wpp-float:hover{transform:scale(1.08);}
-@keyframes wpp-pulse{0%{box-shadow:0 8px 28px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 8px 28px rgba(37,211,102,.4),0 0 0 18px rgba(37,211,102,0)}100%{box-shadow:0 8px 28px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,0)}}
-
-/* ── COOKIE BANNER ── */
-.cookie-banner{position:fixed;bottom:24px;left:24px;max-width:400px;background:var(--s1);border:1px solid var(--border2);border-radius:16px;padding:20px;z-index:150;box-shadow:0 20px 60px rgba(0,0,0,.5);transform:translateY(200%);transition:transform .4s;}
-.cookie-banner.show{transform:translateY(0);}
-.cookie-text{font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:14px;}
-.cookie-text a{color:var(--green);text-decoration:none;}
-.cookie-btns{display:flex;gap:8px;}
-.cookie-btn{padding:9px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;border:none;transition:all .2s;}
-.cookie-btn.accept{background:var(--green);color:#000;flex:1;}
-.cookie-btn.accept:hover{background:var(--green2);}
-.cookie-btn.reject{background:var(--s2);color:var(--muted);border:1px solid var(--border2);}
-.cookie-btn.reject:hover{color:var(--text);}
-
-/* ── REVEAL ── */
-.rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
-.rv.vis{opacity:1;transform:translateY(0);}
-.rv2{opacity:0;transform:translateY(28px);transition:opacity .7s .13s ease,transform .7s .13s ease;}
-.rv2.vis{opacity:1;transform:translateY(0);}
-.rv3{opacity:0;transform:translateY(28px);transition:opacity .7s .24s ease,transform .7s .24s ease;}
-.rv3.vis{opacity:1;transform:translateY(0);}
-
-/* ── RESPONSIVE ── */
-@media(max-width:1000px){
-  .pain-grid,.steps,.testimonials,.pricing{grid-template-columns:1fr 1fr;}
-  .feat-wrap,.why-grid,.support-grid{grid-template-columns:1fr;gap:40px;}
-  .mf-tr,.mf-bl{display:none;}
-  .steps::before{display:none;}
-  .pc.feat{transform:none;}
-  .hero-stats{grid-template-columns:1fr 1fr;}
-  .hstat{border-right:none;border-bottom:1px solid var(--border2);}
-  .hstat:nth-child(odd){border-right:1px solid var(--border2);}
-  .hstat:nth-last-child(-n+2){border-bottom:none;}
-}
-@media(max-width:780px){
-  nav .nav-links,.nav-r .btn-g{display:none;}
-  .hamburger{display:flex;}
-  .compare-table th,.compare-table td{padding:12px 10px;font-size:12px;}
-  .compare-table th:first-child,.compare-table td.feat{font-size:12px;}
-}
-@media(max-width:640px){
-  .pain-grid,.steps,.testimonials,.pricing{grid-template-columns:1fr;}
-  .hero-stats{grid-template-columns:1fr 1fr;}
-  .trust-sep{display:none;}
-  .trust-bar{gap:20px;}
-  .footer-in{flex-direction:column;text-align:center;}
-  .footer-links{justify-content:center;flex-wrap:wrap;}
-  .why-grid{grid-template-columns:1fr;}
-  .hstat:nth-child(odd){border-right:1px solid var(--border2);}
-  .cookie-banner{left:16px;right:16px;max-width:none;}
-  .wpp-float{bottom:16px;right:16px;width:52px;height:52px;}
-}
-</style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     LOGO SVG - Reutilizável. Use <svg><use href="#nf-logo"/></svg>
-═══════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════
+     SÍMBOLO SVG REUTILIZÁVEL — Logo do NextFinance
+     Definido uma vez aqui, reutilizado em toda a página com:
+     <svg><use href="#nf-logo"/></svg>  *leo
+════════════════════════════════════════════════════════════ -->
 <svg width="0" height="0" style="position:absolute;">
   <defs>
+    <!-- Ícone: fundo verde com 3 barras de gráfico em preto -->
     <symbol id="nf-logo" viewBox="0 0 40 40">
       <rect width="40" height="40" rx="10" fill="#00e676"/>
-      <rect x="10" y="22" width="3.5" height="10" fill="#000" rx="1"/>
+      <rect x="10"   y="22" width="3.5" height="10" fill="#000" rx="1"/>
       <rect x="18.25" y="16" width="3.5" height="16" fill="#000" rx="1"/>
-      <rect x="26.5" y="8" width="3.5" height="24" fill="#000" rx="1"/>
+      <rect x="26.5"  y="8"  width="3.5" height="24" fill="#000" rx="1"/>
     </symbol>
   </defs>
 </svg>
 
-<!-- NAV -->
+
+<!-- ── NAVEGAÇÃO PRINCIPAL ───────────────────────────────────
+     Barra fixa no topo com logo, links e botões de ação.
+     O menu mobile (hamburger) aparece em telas menores. *Jp
+──────────────────────────────────────────────────────────── -->
 <nav>
+
+  <!-- Logo: ícone SVG + texto "NextFinance" -->
   <a href="#" class="nav-logo">
     <svg><use href="#nf-logo"/></svg>
     <span class="nav-logo-text">Next<span>Finance</span></span>
   </a>
+
+  <!-- Links de navegação (desktop) -->
   <ul class="nav-links">
     <li><a href="#porque">Por quê?</a></li>
     <li><a href="#recursos">Recursos</a></li>
@@ -475,16 +109,26 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
     <li><a href="#como-funciona">Como funciona</a></li>
     <li><a href="#precos">Preços</a></li>
   </ul>
+
+  <!-- Lado direito: botões + hamburger mobile *leo -->
   <div class="nav-r">
     <a href="#" class="btn-g">Entrar</a>
     <a href="#comecar" class="btn-p">Começar grátis →</a>
+
+    <!-- Botão hamburger — aparece só no mobile *Jp -->
     <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
   </div>
 </nav>
 
-<!-- MOBILE MENU -->
+
+<!-- ── PAINEL DO MENU MOBILE ─────────────────────────────────
+     Desce de cima quando o hamburger é clicado.
+     Fecha automaticamente ao clicar em qualquer link. *leo
+──────────────────────────────────────────────────────────── -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#porque">Por quê?</a>
   <a href="#recursos">Recursos</a>
@@ -493,49 +137,102 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
   <a href="#suporte">Suporte</a>
   <a href="#precos">Preços</a>
   <a href="#">Entrar</a>
+  <!-- Botão de destaque no final do menu mobile -->
   <a href="#comecar" class="mobile-menu-cta">Começar grátis →</a>
 </div>
 
-<!-- HERO -->
+
+<!-- ── HERO — SEÇÃO PRINCIPAL ────────────────────────────────
+     Primeira coisa que o visitante vê. Título grande,
+     subtítulo, 2 botões de ação e estatísticas. *Jp
+──────────────────────────────────────────────────────────── -->
 <section class="hero">
+
+  <!-- Grade de linhas suave no fundo (efeito visual) *leo -->
   <div class="hero-grid"></div>
+
+  <!-- Halos de luz verde atrás do conteúdo -->
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
 
-  <div class="badge"><span class="pulse"></span>Nova versão v2.0 — Mais rápido. Mais inteligente.</div>
-
-  <h1>Seu dinheiro,<br><em>finalmente<br>sob controle</em></h1>
-
-  <p class="hero-sub">A plataforma brasileira que transforma seus gastos em decisões inteligentes. Sem planilha, sem conexão bancária, sem mensalidade escondida.</p>
-  <p class="hero-tagline">Usado por <span>+12.400 brasileiros</span> · Plano básico <span>100% gratuito para sempre</span></p>
-
-  <div class="hero-btns">
-    <a href="#comecar" class="btn-xl">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      Criar conta grátis
-    </a>
-    <a href="#como-funciona" class="btn-xl2">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-      Ver como funciona
-    </a>
+  <!-- Badge "Nova versão v2.0" com ponto pulsante -->
+  <div class="badge">
+    <span class="pulse"></span>
+    Nova versão v2.0 — Mais rápido. Mais inteligente.
   </div>
 
+  <!-- Título principal — o maior impacto da página *Jp -->
+  <h1>Seu dinheiro,<br><em>finalmente<br>sob controle</em></h1>
+
+  <!-- Subtítulo explicativo -->
+  <p class="hero-sub">
+    A plataforma brasileira que transforma seus gastos em decisões inteligentes.
+    Sem planilha, sem conexão bancária, sem mensalidade escondida.
+  </p>
+
+  <!-- Prova social em texto pequeno *leo -->
+  <p class="hero-tagline">
+    Usado por <span>Muitos brasileiros</span> · Plano básico <span>100% gratuito para sempre</span>
+  </p>
+
+  <!-- Dois botões principais de ação (CTA) -->
+  <div class="hero-btns">
+
+    <!-- CTA primário: vai para o formulário de cadastro -->
+    <a href="#comecar" class="btn-xl">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="12" y1="5"  x2="12" y2="19"/>
+        <line x1="5"  y1="12" x2="19" y2="12"/>
+      </svg>
+      Criar conta grátis
+    </a>
+
+    <!-- CTA secundário: ancora para "Como funciona" *Jp -->
+    <a href="#como-funciona" class="btn-xl2">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polygon points="5 3 19 12 5 21 5 3"/>
+      </svg>
+      Ver como funciona
+    </a>
+
+  </div>
+
+  <!-- Pílula informativa de suporte *leo -->
   <div class="support-pill">
     <span class="support-dot"></span>
     Suporte 24 horas · 7 dias por semana · Em português
   </div>
 
+  <!-- Grade com 4 estatísticas do produto.... Alteração de 12,400 pra Muitos brasileiros --> 
   <div class="hero-stats">
-    <div class="hstat"><div class="hstat-n">12.400+</div><div class="hstat-l">Usuários ativos</div></div>
-    <div class="hstat"><div class="hstat-n">R$2,3M</div><div class="hstat-l">Em gastos mapeados</div></div>
-    <div class="hstat"><div class="hstat-n">4,9 ★</div><div class="hstat-l">Avaliação média</div></div>
-    <div class="hstat"><div class="hstat-n">24/7</div><div class="hstat-l">Suporte disponível</div></div>
+    <div class="hstat">
+      <div class="hstat-n">Milhares</div>
+      <div class="hstat-l">Usuários </div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-n">R$2,3M</div>
+      <div class="hstat-l">Em gastos mapeados</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-n">4,9 ★</div>
+      <div class="hstat-l">Avaliação média</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-n">24/7</div>
+      <div class="hstat-l">Suporte disponível</div>
+    </div>
   </div>
+
 </section>
 
-<!-- STRIP -->
+
+<!-- ── STRIP (FAIXA ANIMADA) ─────────────────────────────────
+     Faixa que rola infinitamente mostrando features do produto.
+     Os itens são duplicados para o loop ser contínuo. *Jp
+──────────────────────────────────────────────────────────── -->
 <div class="strip">
   <div class="strip-track">
+    <!-- Primeira cópia dos itens -->
     <span class="strip-item"><span class="sdot"></span>Cadastro 100% gratuito</span>
     <span class="strip-item"><span class="sdot"></span>Calculadora de impacto mensal</span>
     <span class="strip-item"><span class="sdot"></span>Análise por categoria</span>
@@ -545,6 +242,7 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
     <span class="strip-item"><span class="sdot"></span>Suporte 24h/7 dias</span>
     <span class="strip-item"><span class="sdot"></span>Multiplataforma</span>
     <span class="strip-item"><span class="sdot"></span>Sem cartão necessário</span>
+    <!-- Segunda cópia — necessária para o loop não ter "salto" *leo -->
     <span class="strip-item"><span class="sdot"></span>Cadastro 100% gratuito</span>
     <span class="strip-item"><span class="sdot"></span>Calculadora de impacto mensal</span>
     <span class="strip-item"><span class="sdot"></span>Análise por categoria</span>
@@ -557,130 +255,244 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
   </div>
 </div>
 
-<!-- POR QUÊ NEXTFINANCE -->
+
+<!-- ── SEÇÃO: POR QUÊ NEXTFINANCE ────────────────────────────
+     Dois tipos de card: um grande à esquerda e três menores
+     empilhados à direita. Seguido de barra de confiança. *Jp
+──────────────────────────────────────────────────────────── -->
 <section class="section" id="porque">
   <div class="container">
+
+    <!-- Cabeçalho da seção (centralizado) -->
     <div class="text-c rv">
       <div class="slab">Por que NextFinance?</div>
       <h2 class="stitle">Criado por brasileiros,<br>para brasileiros</h2>
-      <p class="sdesc mx-a">Não é mais um app genérico adaptado. É uma plataforma pensada desde o primeiro pixel para a realidade financeira do Brasil.</p>
+      <p class="sdesc mx-a">
+        Não é mais um app genérico adaptado. É uma plataforma pensada desde o primeiro pixel
+        para a realidade financeira do Brasil.
+      </p>
     </div>
+
+    <!-- Grade: card grande + coluna de cards pequenos *leo -->
     <div class="why-grid" style="margin-top:56px;">
+
+      <!-- Card grande: "Feito para o brasileiro" -->
       <div class="why-big rv">
         <span class="why-icon">🇧🇷</span>
         <div class="why-title">Feito para a realidade<br>do brasileiro</div>
-        <div class="why-text">Parcelas, pix, cashback, assinaturas em real — a NextFinance entende como o brasileiro gasta. Não precisa adaptar nada para a nossa realidade: ela já é a nossa realidade.</div>
-        <div class="why-highlight">✓ Moeda em Real · Datas em formato brasileiro · Interface em português nativo</div>
+        <div class="why-text">
+          Parcelas, pix, cashback, assinaturas em real — a NextFinance entende como o brasileiro gasta.
+          Não precisa adaptar nada para a nossa realidade: ela já é a nossa realidade.
+        </div>
+        <div class="why-highlight">
+          ✓ Moeda em Real · Datas em formato brasileiro · Interface em português nativo
+        </div>
       </div>
+
+      <!-- Coluna com 3 cards menores *Jp -->
       <div class="why-col rv2">
+
         <div class="why-small">
           <div class="ws-icon">🔒</div>
           <div>
             <div class="ws-title">Zero conexão bancária</div>
-            <div class="ws-text">Você cadastra manualmente. Sem expor senhas, sem Open Finance obrigatório, sem desconforto. Seus dados ficam com você.</div>
+            <div class="ws-text">
+              Você cadastra manualmente. Sem expor senhas, sem Open Finance obrigatório,
+              sem desconforto. Seus dados ficam com você.
+            </div>
           </div>
         </div>
+
         <div class="why-small">
           <div class="ws-icon">⚡</div>
           <div>
             <div class="ws-title">Funciona em 5 minutos</div>
-            <div class="ws-text">Sem configuração complexa, sem manual de 50 páginas. Cria conta, cadastra o primeiro gasto e já tem insight na tela.</div>
+            <div class="ws-text">
+              Sem configuração complexa, sem manual de 50 páginas. Cria conta,
+              cadastra o primeiro gasto e já tem insight na tela.
+            </div>
           </div>
         </div>
+
         <div class="why-small">
           <div class="ws-icon">🆓</div>
           <div>
             <div class="ws-title">Gratuito de verdade</div>
-            <div class="ws-text">O plano básico é grátis para sempre. Sem trial de 7 dias, sem cartão de crédito, sem surpresa no bolso.</div>
+            <div class="ws-text">
+              O plano básico é grátis para sempre. Sem trial de 7 dias,
+              sem cartão de crédito, sem surpresa no bolso.
+            </div>
           </div>
         </div>
+
+      </div>
+    </div><!-- /why-grid -->
+
+    <!-- Barra de confiança com números e ícones *leo -->
+    <div class="trust-bar rv3">
+      <div class="trust-item">
+        <span class="trust-icon">⭐</span>
+        <div><div class="trust-num">4,9/5</div><span>Avaliação dos usuários</span></div>
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <span class="trust-icon">👥</span>
+        <div><div class="trust-num">12.400+</div><span>Usuários ativos</span></div>
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <span class="trust-icon">🔒</span>
+        <div><div class="trust-num">AES-256</div><span>Criptografia bancária</span></div>
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <span class="trust-icon">💬</span>
+        <div><div class="trust-num">24/7</div><span>Suporte sempre ativo</span></div>
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <span class="trust-icon">🇧🇷</span>
+        <div><div class="trust-num">100%</div><span>Feito no Brasil</span></div>
       </div>
     </div>
 
-    <div class="trust-bar rv3">
-      <div class="trust-item"><span class="trust-icon">⭐</span><div><div class="trust-num">4,9/5</div><span>Avaliação dos usuários</span></div></div>
-      <div class="trust-sep"></div>
-      <div class="trust-item"><span class="trust-icon">👥</span><div><div class="trust-num">12.400+</div><span>Usuários ativos</span></div></div>
-      <div class="trust-sep"></div>
-      <div class="trust-item"><span class="trust-icon">🔒</span><div><div class="trust-num">AES-256</div><span>Criptografia bancária</span></div></div>
-      <div class="trust-sep"></div>
-      <div class="trust-item"><span class="trust-icon">💬</span><div><div class="trust-num">24/7</div><span>Suporte sempre ativo</span></div></div>
-      <div class="trust-sep"></div>
-      <div class="trust-item"><span class="trust-icon">🇧🇷</span><div><div class="trust-num">100%</div><span>Feito no Brasil</span></div></div>
-    </div>
-
+    <!-- Micro-CTA abaixo da barra de confiança *Jp -->
     <div class="micro-cta rv3">
       <a href="#comecar">Criar minha conta grátis agora →</a>
     </div>
+
   </div>
 </section>
 
-<!-- PROBLEMA -->
+
+<!-- ── SEÇÃO: O PROBLEMA ──────────────────────────────────────
+     3 cards de "dor" que o produto resolve.
+     Fundo levemente diferente para destacar a seção. *leo
+──────────────────────────────────────────────────────────── -->
 <section class="section" style="background:var(--s1);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
   <div class="container">
+
     <div class="text-c rv">
       <div class="slab">O problema</div>
       <h2 class="stitle">Você sabe quanto gasta<br>por mês de verdade?</h2>
-      <p class="sdesc mx-a">A maioria dos brasileiros não sabe. Não por falta de esforço — mas por falta de uma ferramenta honesta e simples.</p>
+      <p class="sdesc mx-a">
+        A maioria dos brasileiros não sabe. Não por falta de esforço — mas por falta
+        de uma ferramenta honesta e simples.
+      </p>
     </div>
+
+    <!-- Grade de cards de problema *Jp -->
     <div class="pain-grid">
+
+      <!-- Dor 1: planilhas -->
       <div class="pcard rv">
         <span class="pcard-icon">😩</span>
         <div class="pcard-title">Planilhas que ninguém usa</div>
-        <div class="pcard-text">Você cria, anota por 3 dias, abandona. O problema não é disciplina — é que planilhas são chatas e trabalhosas. Ninguém quer abrir Excel no fim do dia.</div>
+        <div class="pcard-text">
+          Você cria, anota por 3 dias, abandona. O problema não é disciplina — é que planilhas
+          são chatas e trabalhosas. Ninguém quer abrir Excel no fim do dia.
+        </div>
         <div class="pcard-solve">✓ NextFinance é visual, rápido e viciante</div>
       </div>
+
+      <!-- Dor 2: apps que pedem dados bancários -->
       <div class="pcard rv2">
         <span class="pcard-icon">🔑</span>
         <div class="pcard-title">Apps que pedem seus dados bancários</div>
-        <div class="pcard-text">Conectar conta bancária gera desconforto real. Você deveria controlar seu dinheiro sem precisar entregar senha do banco para nenhum app.</div>
+        <div class="pcard-text">
+          Conectar conta bancária gera desconforto real. Você deveria controlar seu dinheiro
+          sem precisar entregar senha do banco para nenhum app.
+        </div>
         <div class="pcard-solve">✓ Aqui seus dados bancários ficam com você</div>
       </div>
+
+      <!-- Dor 3: cobranças escondidas *leo -->
       <div class="pcard rv3">
         <span class="pcard-icon">💸</span>
         <div class="pcard-title">Cobranças escondidas pós-trial</div>
-        <div class="pcard-text">Testou grátis por 7 dias, gostou, aí vem a surpresa: R$ 49,90/mês. O plano básico do NextFinance é gratuito para sempre — sem asterisco.</div>
+        <div class="pcard-text">
+          Testou grátis por 7 dias, gostou, aí vem a surpresa: R$ 49,90/mês. O plano básico
+          do NextFinance é gratuito para sempre — sem asterisco.
+        </div>
         <div class="pcard-solve">✓ Grátis no básico. Para sempre. Sem pegadinha.</div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- RECURSOS -->
+
+<!-- ── SEÇÃO: RECURSOS ────────────────────────────────────────
+     Lista de features clicáveis à esquerda + mockup do produto
+     à direita. O JS troca o estilo da feature ativa. *Jp
+──────────────────────────────────────────────────────────── -->
 <section class="section" id="recursos">
   <div class="container">
     <div class="feat-wrap">
+
+      <!-- Coluna esquerda: lista de features -->
       <div>
         <div class="rv">
           <div class="slab">Recursos</div>
           <h2 class="stitle">Tudo que você precisa,<br>nada que você não quer</h2>
-          <p class="sdesc" style="margin-bottom:34px;">Cada recurso foi pensado para ser simples de usar e poderoso na análise. Sem bloatware, sem configurações desnecessárias.</p>
+          <p class="sdesc" style="margin-bottom:34px;">
+            Cada recurso foi pensado para ser simples de usar e poderoso na análise.
+            Sem bloatware, sem configurações desnecessárias.
+          </p>
         </div>
+
+        <!-- Lista de features clicáveis — JS controla qual está .on *leo -->
         <div class="feat-list rv2">
+
+          <!-- Feature 0: ativa por padrão -->
           <div class="fi on" onclick="setFeat(0)">
             <div class="fi-icon">🧮</div>
-            <div class="fi-body"><h3>Calculadora de Impacto Mensal</h3><p>Valor + frequência → custo real por semana, mês e ano calculado na hora. Você vai se assustar com o que descobre.</p></div>
+            <div class="fi-body">
+              <h3>Calculadora de Impacto Mensal</h3>
+              <p>Valor + frequência → custo real por semana, mês e ano calculado na hora. Você vai se assustar com o que descobre.</p>
+            </div>
           </div>
+
           <div class="fi" onclick="setFeat(1)">
             <div class="fi-icon">📊</div>
-            <div class="fi-body"><h3>Painel Visual em Tempo Real</h3><p>Gráficos de linha, barras por categoria e resumo mensal. Atualiza conforme você cadastra. Bonito e informativo.</p></div>
+            <div class="fi-body">
+              <h3>Painel Visual em Tempo Real</h3>
+              <p>Gráficos de linha, barras por categoria e resumo mensal. Atualiza conforme você cadastra. Bonito e informativo.</p>
+            </div>
           </div>
+
           <div class="fi" onclick="setFeat(2)">
             <div class="fi-icon">🏷️</div>
-            <div class="fi-body"><h3>Organização por Categorias</h3><p>Moradia, alimentação, lazer, assinaturas — veja exatamente para onde seu dinheiro vai, sem esforço nenhum.</p></div>
+            <div class="fi-body">
+              <h3>Organização por Categorias</h3>
+              <p>Moradia, alimentação, lazer, assinaturas — veja exatamente para onde seu dinheiro vai, sem esforço nenhum.</p>
+            </div>
           </div>
+
           <div class="fi" onclick="setFeat(3)">
             <div class="fi-icon">🔔</div>
-            <div class="fi-body"><h3>Alertas e Projeções Futuras</h3><p>Saiba quanto vai gastar até o fim do mês — e o impacto no ano inteiro. Tome decisões antes que o mês acabe.</p></div>
+            <div class="fi-body">
+              <h3>Alertas e Projeções Futuras</h3>
+              <p>Saiba quanto vai gastar até o fim do mês — e o impacto no ano inteiro. Tome decisões antes que o mês acabe.</p>
+            </div>
           </div>
+
           <div class="fi" onclick="setFeat(4)">
             <div class="fi-icon">🤖</div>
-            <div class="fi-body"><h3>Sugestões de IA Financeira</h3><p>A IA analisa seus hábitos e sugere onde cortar gastos sem impactar sua qualidade de vida. Feito para o Brasil.</p></div>
+            <div class="fi-body">
+              <h3>Sugestões de IA Financeira</h3>
+              <p>A IA analisa seus hábitos e sugere onde cortar gastos sem impactar sua qualidade de vida. Feito para o Brasil.</p>
+            </div>
           </div>
-        </div>
-      </div>
+
+        </div><!-- /feat-list -->
+      </div><!-- /coluna esquerda -->
+
+      <!-- Coluna direita: mockup do dashboard *Jp -->
       <div class="mock-wrap rv3">
         <div class="mock-card">
+
+          <!-- Barra de título estilo macOS com os 3 pontinhos -->
           <div class="mock-hd">
             <div class="mock-dots">
               <div class="md" style="background:#ff5f57"></div>
@@ -690,48 +502,112 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
             <span style="font-size:11px;color:var(--muted)">nextfinance.app · dashboard</span>
             <span></span>
           </div>
+
+          <!-- Corpo do mockup: total + barras de categorias + cards *leo -->
           <div class="mock-body">
+
             <div class="mock-rl">Gasto mensal total</div>
             <div class="mock-total">R$ 3.840,00</div>
-            <div class="mock-sub"><span class="trend-down">↓ 12%</span> vs. mês anterior — Você está melhorando!</div>
+            <div class="mock-sub">
+              <span class="trend-down">↓ 12%</span> vs. mês anterior — Você está melhorando!
+            </div>
+
+            <!-- Barras de progresso por categoria de gasto -->
             <div class="mock-bars">
-              <div class="mbr"><div class="mbl">🏠 Moradia</div><div class="mbb"><div class="mbf" style="width:72%;background:#40c4ff"></div></div><div class="mbv" style="color:#40c4ff">R$1.380</div></div>
-              <div class="mbr"><div class="mbl">🍔 Alimentação</div><div class="mbb"><div class="mbf" style="width:48%;background:#ffd740"></div></div><div class="mbv" style="color:#ffd740">R$920</div></div>
-              <div class="mbr"><div class="mbl">🚗 Transporte</div><div class="mbb"><div class="mbf" style="width:28%;background:#ff6d00"></div></div><div class="mbv" style="color:#ff6d00">R$540</div></div>
-              <div class="mbr"><div class="mbl">📱 Assinaturas</div><div class="mbb"><div class="mbf" style="width:19%;background:#ff1744"></div></div><div class="mbv" style="color:#ff1744">R$360</div></div>
-              <div class="mbr"><div class="mbl">🎬 Lazer</div><div class="mbb"><div class="mbf" style="width:14%;background:#e040fb"></div></div><div class="mbv" style="color:#e040fb">R$260</div></div>
-              <div class="mbr"><div class="mbl">📚 Educação</div><div class="mbb"><div class="mbf" style="width:10%;background:#00e676"></div></div><div class="mbv" style="color:#00e676">R$200</div></div>
-            </div>
+              <div class="mbr">
+                <div class="mbl">🏠 Moradia</div>
+                <div class="mbb"><div class="mbf" style="width:72%;background:#40c4ff"></div></div>
+                <div class="mbv" style="color:#40c4ff">R$1.380</div>
+              </div>
+              <div class="mbr">
+                <div class="mbl">🍔 Alimentação</div>
+                <div class="mbb"><div class="mbf" style="width:48%;background:#ffd740"></div></div>
+                <div class="mbv" style="color:#ffd740">R$920</div>
+              </div>
+              <div class="mbr">
+                <div class="mbl">🚗 Transporte</div>
+                <div class="mbb"><div class="mbf" style="width:28%;background:#ff6d00"></div></div>
+                <div class="mbv" style="color:#ff6d00">R$540</div>
+              </div>
+              <div class="mbr">
+                <div class="mbl">📱 Assinaturas</div>
+                <div class="mbb"><div class="mbf" style="width:19%;background:#ff1744"></div></div>
+                <div class="mbv" style="color:#ff1744">R$360</div>
+              </div>
+              <div class="mbr">
+                <div class="mbl">🎬 Lazer</div>
+                <div class="mbb"><div class="mbf" style="width:14%;background:#e040fb"></div></div>
+                <div class="mbv" style="color:#e040fb">R$260</div>
+              </div>
+              <div class="mbr">
+                <div class="mbl">📚 Educação</div>
+                <div class="mbb"><div class="mbf" style="width:10%;background:#00e676"></div></div>
+                <div class="mbv" style="color:#00e676">R$200</div>
+              </div>
+            </div><!-- /mock-bars -->
+
+            <!-- Mini cards de métricas *Jp -->
             <div class="mock-cards">
-              <div class="mc"><div class="mc-l">Projeção anual</div><div class="mc-v" style="color:var(--green)">R$46.080</div></div>
-              <div class="mc"><div class="mc-l">Maior gasto</div><div class="mc-v">Moradia</div></div>
-              <div class="mc"><div class="mc-l">IA sugere cortar</div><div class="mc-v" style="color:var(--yellow)">R$340/mês</div></div>
-              <div class="mc"><div class="mc-l">Meta do mês</div><div class="mc-v" style="color:#40c4ff">78% ✓</div></div>
+              <div class="mc">
+                <div class="mc-l">Projeção anual</div>
+                <div class="mc-v" style="color:var(--green)">R$46.080</div>
+              </div>
+              <div class="mc">
+                <div class="mc-l">Maior gasto</div>
+                <div class="mc-v">Moradia</div>
+              </div>
+              <div class="mc">
+                <div class="mc-l">IA sugere cortar</div>
+                <div class="mc-v" style="color:var(--yellow)">R$340/mês</div>
+              </div>
+              <div class="mc">
+                <div class="mc-l">Meta do mês</div>
+                <div class="mc-v" style="color:#40c4ff">78% ✓</div>
+              </div>
             </div>
-          </div>
-        </div>
+
+          </div><!-- /mock-body -->
+        </div><!-- /mock-card -->
+
+        <!-- Cards flutuantes ao redor do mockup (notificações de IA) *leo -->
         <div class="mock-float mf-tr">
           <div class="mf-icon">💡</div>
-          <div><div class="mf-l">IA identificou</div><div class="mf-v">Economize R$340/mês</div></div>
+          <div>
+            <div class="mf-l">IA identificou</div>
+            <div class="mf-v">Economize R$340/mês</div>
+          </div>
         </div>
+
         <div class="mock-float mf-bl">
           <div class="mf-icon">🎯</div>
-          <div><div class="mf-l">Meta atingida</div><div class="mf-v">+23% eficiência</div></div>
+          <div>
+            <div class="mf-l">Meta atingida</div>
+            <div class="mf-v">+23% eficiência</div>
+          </div>
         </div>
-      </div>
-    </div>
+
+      </div><!-- /mock-wrap -->
+    </div><!-- /feat-wrap -->
   </div>
 </section>
 
-<!-- COMPARATIVO COM OUTROS APPS -->
+
+<!-- ── SEÇÃO: COMPARATIVO ─────────────────────────────────────
+     Tabela NextFinance vs. apps tradicionais.
+     Fundo escuro para criar contraste com a seção anterior. *Jp
+──────────────────────────────────────────────────────────── -->
 <section class="section" id="comparar" style="background:var(--s1);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
   <div class="container">
+
     <div class="text-c rv">
       <div class="slab">Comparar com outros apps</div>
       <h2 class="stitle">NextFinance vs.<br>Apps tradicionais</h2>
-      <p class="sdesc mx-a">Veja as diferenças que importam na hora de escolher uma ferramenta de controle financeiro no Brasil.</p>
+      <p class="sdesc mx-a">
+        Veja as diferenças que importam na hora de escolher uma ferramenta de controle financeiro no Brasil.
+      </p>
     </div>
 
+    <!-- Tabela comparativa: ✓ para NextFinance, ✗ para concorrentes *leo -->
     <div class="compare-wrap rv2">
       <table class="compare-table">
         <thead>
@@ -784,155 +660,272 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
     <div class="micro-cta rv3">
       <a href="#comecar">Testar grátis agora →</a>
     </div>
+
   </div>
 </section>
 
-<!-- COMO FUNCIONA -->
+
+<!-- ── SEÇÃO: COMO FUNCIONA ───────────────────────────────────
+     3 passos numerados conectados por uma linha decorativa.
+     Simples e objetivo — 5 minutos do início ao resultado. *Jp
+──────────────────────────────────────────────────────────── -->
 <section class="section" id="como-funciona">
   <div class="container">
+
     <div class="text-c rv">
       <div class="slab">Como funciona</div>
       <h2 class="stitle">3 passos. Menos de 5 minutos.</h2>
-      <p class="sdesc mx-a">Não precisa conectar banco, não precisa baixar app. Funciona direto no navegador — no celular ou no computador.</p>
+      <p class="sdesc mx-a">
+        Não precisa conectar banco, não precisa baixar app.
+        Funciona direto no navegador — no celular ou no computador.
+      </p>
     </div>
+
+    <!-- Grade de 3 passos (a linha de conexão é gerada pelo CSS) *leo -->
     <div class="steps">
+
       <div class="step rv">
         <div class="step-n">1</div>
         <div class="step-t">Crie sua conta grátis</div>
-        <div class="step-d">Nome, e-mail e pronto. Em 30 segundos você já está dentro. Sem formulário longo, sem verificação de cartão, sem burocracia.</div>
+        <div class="step-d">
+          Nome, e-mail e pronto. Em 30 segundos você já está dentro.
+          Sem formulário longo, sem verificação de cartão, sem burocracia.
+        </div>
         <div class="step-time">⚡ 30 segundos</div>
       </div>
+
       <div class="step rv2">
         <div class="step-n">2</div>
         <div class="step-t">Cadastre seus gastos</div>
-        <div class="step-d">Netflix R$39,90/mês? A calculadora mostra que são R$478,80/ano automaticamente. Uma verdade que pesa, mas que liberta você.</div>
+        <div class="step-d">
+          Netflix R$39,90/mês? A calculadora mostra que são R$478,80/ano automaticamente.
+          Uma verdade que pesa, mas que liberta você.
+        </div>
         <div class="step-time">⏱️ 2 minutos</div>
       </div>
+
       <div class="step rv3">
         <div class="step-n">3</div>
         <div class="step-t">Analise e economize</div>
-        <div class="step-d">Painel com gráficos, categorias e projeções. Você enxerga onde cortar, quanto guardar e como chegar nas suas metas financeiras.</div>
+        <div class="step-d">
+          Painel com gráficos, categorias e projeções. Você enxerga onde cortar,
+          quanto guardar e como chegar nas suas metas financeiras.
+        </div>
         <div class="step-time">📈 Resultados imediatos</div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- DEPOIMENTOS -->
+
+<!-- ── SEÇÃO: DEPOIMENTOS ─────────────────────────────────────
+     3 cards de testemunhos com estrelas, citação, autor
+     e badge de economia. *Jp
+──────────────────────────────────────────────────────────── -->
 <section class="section" style="background:var(--s1);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
   <div class="container">
+
     <div class="text-c rv">
       <div class="slab">Depoimentos</div>
       <h2 class="stitle">Quem usa, não larga</h2>
       <p class="sdesc mx-a">Depoimentos de brasileiros que organizaram suas finanças com o NextFinance.</p>
     </div>
+
     <div class="testimonials">
+
+      <!-- Depoimento 1: Ana Costa *leo -->
       <div class="tc rv">
         <div class="tc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <div class="tc-quote">"Finalmente um app que me faz entender para onde meu dinheiro vai. O suporte 24h me ajudou na configuração às 23h — isso não existe em outro lugar."</div>
+        <div class="tc-quote">
+          "Finalmente um app que me faz entender para onde meu dinheiro vai.
+          O suporte 24h me ajudou na configuração às 23h — isso não existe em outro lugar."
+        </div>
         <div class="tc-author">
+          <!-- Avatar com iniciais em gradiente -->
           <div class="tc-av" style="background:linear-gradient(135deg,#00e676,#1de9b6)">AC</div>
-          <div><div class="tc-name">Ana Costa</div><div class="tc-role">Designer · São Paulo</div></div>
+          <div>
+            <div class="tc-name">Ana Costa</div>
+            <div class="tc-role">Designer · São Paulo</div>
+          </div>
         </div>
         <div class="tc-saved">💰 Economizou R$800 no 1º mês</div>
       </div>
+
+      <!-- Depoimento 2: Marcos Silva *Jp -->
       <div class="tc rv2">
         <div class="tc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <div class="tc-quote">"A calculadora de impacto é incrível. Descobri que pagava R$340/mês em serviços que esqueci de cancelar. Simples assim, dinheiro de volta no bolso."</div>
+        <div class="tc-quote">
+          "A calculadora de impacto é incrível. Descobri que pagava R$340/mês em serviços
+          que esqueci de cancelar. Simples assim, dinheiro de volta no bolso."
+        </div>
         <div class="tc-author">
           <div class="tc-av" style="background:linear-gradient(135deg,#40c4ff,#7c4dff)">MS</div>
-          <div><div class="tc-name">Marcos Silva</div><div class="tc-role">Desenvolvedor · BH</div></div>
+          <div>
+            <div class="tc-name">Marcos Silva</div>
+            <div class="tc-role">Desenvolvedor · BH</div>
+          </div>
         </div>
         <div class="tc-saved">💰 Economizou R$340/mês imediatamente</div>
       </div>
+
+      <!-- Depoimento 3: Juliana Ramos -->
       <div class="tc rv3">
         <div class="tc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <div class="tc-quote">"Interface linda e sem frescura. Em 5 minutos já tinha cadastrado os gastos da família toda. Meu marido nunca quis saber de finanças — hoje ele usa todos os dias!"</div>
+        <div class="tc-quote">
+          "Interface linda e sem frescura. Em 5 minutos já tinha cadastrado os gastos da família toda.
+          Meu marido nunca quis saber de finanças — hoje ele usa todos os dias!"
+        </div>
         <div class="tc-author">
           <div class="tc-av" style="background:linear-gradient(135deg,#ffd740,#ff6d00)">JR</div>
-          <div><div class="tc-name">Juliana Ramos</div><div class="tc-role">Professora · Curitiba</div></div>
+          <div>
+            <div class="tc-name">Juliana Ramos</div>
+            <div class="tc-role">Professora · Curitiba</div>
+          </div>
         </div>
         <div class="tc-saved">💰 Família economizou R$560/mês</div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- SUPORTE 24H -->
+
+<!-- ── SEÇÃO: SUPORTE 24H ─────────────────────────────────────
+     Fundo com gradiente verde suave. Layout: texto com 3
+     cards de feature + card visual de status ao vivo. *leo
+──────────────────────────────────────────────────────────── -->
 <section class="section support-sec" id="suporte">
   <div class="container">
     <div class="support-grid">
+
+      <!-- Coluna esquerda: texto + cards de canal de suporte -->
       <div>
         <div class="rv">
           <div class="slab">Suporte 24 horas</div>
           <h2 class="stitle">Sempre aqui quando<br>você precisar</h2>
-          <p class="sdesc">Suporte humano, em português, disponível 24 horas por dia, 7 dias por semana. Porque dúvida financeira não tem hora marcada.</p>
+          <p class="sdesc">
+            Suporte humano, em português, disponível 24 horas por dia, 7 dias por semana.
+            Porque dúvida financeira não tem hora marcada.
+          </p>
         </div>
+
+        <!-- 3 cards de tipo de suporte *Jp -->
         <div class="support-features rv2">
+
           <div class="sf">
             <div class="sf-icon">💬</div>
             <div>
               <div class="sf-title">Chat ao vivo 24/7</div>
-              <div class="sf-text">Resposta em menos de 5 minutos, a qualquer hora do dia ou da noite. Atendimento humano, não robô genérico.</div>
+              <div class="sf-text">
+                Resposta em menos de 5 minutos, a qualquer hora do dia ou da noite.
+                Atendimento humano, não robô genérico.
+              </div>
             </div>
           </div>
+
           <div class="sf">
             <div class="sf-icon">📧</div>
             <div>
               <div class="sf-title">E-mail com resposta garantida</div>
-              <div class="sf-text">Envie sua dúvida e receba resposta em até 4 horas. Compromisso nosso, não promessa vazia.</div>
+              <div class="sf-text">
+                Envie sua dúvida e receba resposta em até 4 horas.
+                Compromisso nosso, não promessa vazia.
+              </div>
             </div>
           </div>
+
           <div class="sf">
             <div class="sf-icon">📚</div>
             <div>
               <div class="sf-title">Central de ajuda completa</div>
-              <div class="sf-text">Tutoriais em vídeo, artigos passo a passo e FAQs sempre atualizados. A maioria das dúvidas se resolve em segundos.</div>
+              <div class="sf-text">
+                Tutoriais em vídeo, artigos passo a passo e FAQs sempre atualizados.
+                A maioria das dúvidas se resolve em segundos.
+              </div>
             </div>
           </div>
+
         </div>
-      </div>
+      </div><!-- /coluna esquerda -->
+
+      <!-- Coluna direita: card visual de status *leo -->
       <div class="rv3">
         <div class="support-visual">
-          <div class="sv-badge"><span class="support-dot"></span> Suporte online agora</div>
+
+          <!-- Badge "online agora" com ponto pulsante -->
+          <div class="sv-badge">
+            <span class="support-dot"></span> Suporte online agora
+          </div>
+
           <div class="sv-clock">🕐</div>
           <div class="sv-title">24h · 7 dias · 365 dias</div>
-          <div class="sv-text">Nossa equipe está de plantão agora mesmo. Fale com a gente pelo canal que preferir — sempre em português, sempre com solução de verdade.</div>
+          <div class="sv-text">
+            Nossa equipe está de plantão agora mesmo. Fale com a gente pelo canal que preferir
+            — sempre em português, sempre com solução de verdade.
+          </div>
+
+          <!-- Links para os canais de atendimento *Jp -->
           <div class="sv-channels">
             <a href="#" class="sc"><span class="sc-dot"></span>Chat ao vivo</a>
             <a href="mailto:suporte@nextfinance.app" class="sc"><span class="sc-dot"></span>E-mail</a>
-            <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20NextFinance" target="_blank" class="sc wpp"><span class="sc-dot"></span>WhatsApp</a>
+            <!-- Link com mensagem pré-preenchida no WhatsApp -->
+            <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20NextFinance" target="_blank" class="sc wpp">
+              <span class="sc-dot"></span>WhatsApp
+            </a>
           </div>
+
+          <!-- Tempos de resposta por canal -->
           <div style="margin-top:24px;padding:16px;background:rgba(0,230,118,.05);border:1px dashed rgba(0,230,118,.2);border-radius:12px;font-size:13px;color:var(--muted);">
             <span style="color:var(--green);font-weight:700;">Tempo médio de resposta:</span><br>
             Chat: &lt; 5 min &nbsp;·&nbsp; E-mail: &lt; 4h &nbsp;·&nbsp; Plano Pro: prioridade máxima
           </div>
+
         </div>
-      </div>
+      </div><!-- /coluna direita -->
+
     </div>
   </div>
 </section>
 
-<!-- PRECOS -->
+
+<!-- ── SEÇÃO: PREÇOS ──────────────────────────────────────────
+     Toggle mensal/anual + 3 cards de plano (Básico/Pro/Família).
+     O card Pro está em destaque (scale maior). *leo
+──────────────────────────────────────────────────────────── -->
 <section class="section" id="precos" style="background:var(--s1);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
   <div class="container">
+
     <div class="text-c rv">
       <div class="slab">Preços</div>
       <h2 class="stitle">Transparente do início ao fim</h2>
-      <p class="sdesc mx-a">Comece grátis. Upgrade apenas quando fizer sentido pra você. Sem pegadinhas, sem asteriscos, sem cobranças escondidas.</p>
+      <p class="sdesc mx-a">
+        Comece grátis. Upgrade apenas quando fizer sentido pra você.
+        Sem pegadinhas, sem asteriscos, sem cobranças escondidas.
+      </p>
 
-      <!-- BILLING TOGGLE -->
+      <!-- Toggle Mensal / Anual — JS controla qual está ativo *Jp -->
       <div class="billing-toggle" role="tablist">
+        <!-- Bolha verde que desliza entre os botões -->
         <div class="billing-indicator" id="billingIndicator"></div>
         <button class="active" onclick="setBilling('monthly')" id="btnMonthly">Mensal</button>
-        <button onclick="setBilling('annual')" id="btnAnnual">Anual <span class="save-pill">-20%</span></button>
+        <button onclick="setBilling('annual')" id="btnAnnual">
+          Anual <span class="save-pill">-20%</span>
+        </button>
       </div>
     </div>
 
+    <!-- Grade com 3 cards de plano *leo -->
     <div class="pricing">
+
+      <!-- PLANO BÁSICO (Grátis) -->
       <div class="pc rv">
         <div class="pc-plan">Básico</div>
-        <div class="pc-price"><span class="pc-cur">R$</span><span class="pc-amt">0</span><span class="pc-per">/mês</span></div>
+        <div class="pc-price">
+          <span class="pc-cur">R$</span>
+          <span class="pc-amt">0</span>
+          <span class="pc-per">/mês</span>
+        </div>
         <div class="pc-billed">Grátis para sempre · Sem cartão</div>
         <div class="pc-desc">Para começar a organizar. Funciona 100% no navegador, para sempre. Sem prazo.</div>
         <ul class="pc-feats">
@@ -944,24 +937,34 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
           <li><span class="cx">✗</span><span class="td">IA personalizada</span></li>
           <li><span class="cx">✗</span><span class="td">Alertas automáticos</span></li>
         </ul>
-        <button class="btn-plan out" onclick="document.getElementById('comecar').scrollIntoView({behavior:'smooth'})">Começar grátis agora</button>
+        <button class="btn-plan out" onclick="document.getElementById('comecar').scrollIntoView({behavior:'smooth'})">
+          Começar grátis agora
+        </button>
         <div class="pc-support">🕐 Suporte 24h incluído</div>
       </div>
 
+      <!-- PLANO PRO (Destaque) *Jp -->
       <div class="pc feat rv2">
         <div class="pc-tag">⭐ Mais popular</div>
         <div class="pc-plan">Pro</div>
         <div class="pc-price">
           <span class="pc-cur">R$</span>
+          <!-- data-monthly e data-annual usados pelo JS do toggle de cobrança -->
           <span class="pc-amt" data-monthly="19" data-annual="15">19</span>
           <span class="pc-per">/mês</span>
         </div>
         <div class="pc-billed" id="proBilled">Cobrado mensalmente</div>
         <div class="pc-desc">Para quem quer controle total com IA financeira e relatórios avançados.</div>
+
+        <!-- Badge de garantia de devolução *leo -->
         <div class="guarantee-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L3 7v6c0 5 3.5 9 9 9s9-4 9-9V7l-9-5z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2L3 7v6c0 5 3.5 9 9 9s9-4 9-9V7l-9-5z"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
           7 dias de garantia · Devolvemos 100%
         </div>
+
         <ul class="pc-feats">
           <li><span class="ck">✓</span>Tudo do plano Básico</li>
           <li><span class="ck">✓</span>Análise com IA financeira</li>
@@ -971,10 +974,13 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
           <li><span class="ck">✓</span>Suporte prioritário 24h</li>
           <li><span class="ck">✓</span>Resposta &lt; 5 minutos</li>
         </ul>
-        <button class="btn-plan sol" onclick="document.getElementById('comecar').scrollIntoView({behavior:'smooth'})" id="btnPro">Assinar por R$19/mês</button>
+        <button class="btn-plan sol" onclick="document.getElementById('comecar').scrollIntoView({behavior:'smooth'})" id="btnPro">
+          Assinar por R$19/mês
+        </button>
         <div class="pc-support">🚀 Suporte prioritário 24/7</div>
       </div>
 
+      <!-- PLANO FAMÍLIA *Jp -->
       <div class="pc rv3">
         <div class="pc-plan">Família</div>
         <div class="pc-price">
@@ -984,10 +990,15 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
         </div>
         <div class="pc-billed" id="famBilled">Cobrado mensalmente</div>
         <div class="pc-desc">Para famílias e casais que querem planejar juntos com múltiplos perfis.</div>
+
         <div class="guarantee-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L3 7v6c0 5 3.5 9 9 9s9-4 9-9V7l-9-5z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2L3 7v6c0 5 3.5 9 9 9s9-4 9-9V7l-9-5z"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
           7 dias de garantia · Devolvemos 100%
         </div>
+
         <ul class="pc-feats">
           <li><span class="ck">✓</span>Tudo do plano Pro</li>
           <li><span class="ck">✓</span>Até 5 perfis por conta</li>
@@ -997,114 +1008,206 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
           <li><span class="ck">✓</span>Suporte VIP 24h</li>
           <li><span class="ck">✓</span>Gerente de conta dedicado</li>
         </ul>
-        <button class="btn-plan out" onclick="document.getElementById('comecar').scrollIntoView({behavior:'smooth'})" id="btnFam">Assinar por R$29/mês</button>
+        <button class="btn-plan out" onclick="document.getElementById('comecar').scrollIntoView({behavior:'smooth'})" id="btnFam">
+          Assinar por R$29/mês
+        </button>
         <div class="pc-support">👑 Suporte VIP 24/7 dedicado</div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
+
+<!-- ── SEÇÃO: FAQ ─────────────────────────────────────────────
+     Accordion de perguntas frequentes. Os itens são gerados
+     dinamicamente pelo JavaScript (array de objetos). *leo
+──────────────────────────────────────────────────────────── -->
 <section class="section">
   <div class="container">
+
     <div class="text-c rv">
       <div class="slab">Dúvidas frequentes</div>
       <h2 class="stitle">Perguntas que todo mundo tem</h2>
-      <p class="sdesc mx-a">Não encontrou sua dúvida? O suporte 24h está pronto para responder agora mesmo.</p>
+      <p class="sdesc mx-a">
+        Não encontrou sua dúvida? O suporte 24h está pronto para responder agora mesmo.
+      </p>
     </div>
+
+    <!-- Esse div é preenchido pelo JS com os itens do FAQ *Jp -->
     <div class="faq" id="faqWrap"></div>
+
   </div>
 </section>
 
-<!-- CTA FINAL -->
+
+<!-- ── CTA FINAL + FORMULÁRIO DE CADASTRO ────────────────────
+     Seção de conversão. Brilho verde no fundo + card de form.
+     O form tem validação JS e checkbox de LGPD. *leo
+──────────────────────────────────────────────────────────── -->
 <section class="cta-sec" id="comecar">
+
+  <!-- Halo de luz verde no fundo da seção -->
   <div class="cta-glow"></div>
+
+  <!-- Título e subtítulo da seção de conversão -->
   <div class="rv">
     <div class="slab">Comece agora — é grátis</div>
     <h2>Seu dinheiro te<br><em style="color:var(--green);font-style:normal;">espera organizado.</em></h2>
     <p>Crie sua conta em menos de 1 minuto. Plano básico gratuito para sempre. Suporte 24h desde o primeiro dia.</p>
   </div>
+
+  <!-- Card do formulário *Jp -->
   <div class="rv2">
     <div class="sform">
+
+      <!-- Conteúdo do formulário (escondido após envio) -->
       <div id="formContent">
+
         <div class="sform-title">Criar conta gratuita</div>
         <div class="sform-sub">Junte-se a +12.000 brasileiros que já controlam suas finanças.</div>
+
+        <!-- Campo: Nome -->
         <div class="fg">
           <div class="fl">👤 Seu nome</div>
           <input class="fi2" id="sName" type="text" placeholder="Ex: João Silva" autocomplete="name">
         </div>
+
+        <!-- Campo: E-mail -->
         <div class="fg">
           <div class="fl">✉️ E-mail</div>
           <input class="fi2" id="sEmail" type="email" placeholder="joao@email.com" autocomplete="email">
         </div>
+
+        <!-- Campo: WhatsApp (opcional) *leo -->
         <div class="fg">
           <div class="fl">📱 WhatsApp (opcional)</div>
           <input class="fi2" id="sPhone" type="tel" placeholder="(11) 99999-9999" autocomplete="tel">
         </div>
+
+        <!-- Mensagem de erro — aparece via JS se validação falhar -->
         <div class="ferr" id="fErr"></div>
 
-        <!-- LGPD CHECKBOX -->
+        <!-- Checkbox de aceite da LGPD — obrigatório para enviar *Jp -->
         <label class="lgpd-box">
           <input type="checkbox" id="lgpdCheck">
-          <span class="lgpd-text">Li e concordo com a <a href="#" target="_blank">Política de Privacidade</a> e os <a href="#" target="_blank">Termos de Uso</a>, em conformidade com a LGPD.</span>
+          <span class="lgpd-text">
+            Li e concordo com a <a href="#" target="_blank">Política de Privacidade</a>
+            e os <a href="#" target="_blank">Termos de Uso</a>, em conformidade com a LGPD.
+          </span>
         </label>
 
+        <!-- Botão de envio — disparado pelo JS *leo -->
         <button class="btn-xl" style="width:100%;justify-content:center;margin-top:6px;" onclick="submitForm()" id="fBtn">
           Criar minha conta grátis →
         </button>
+
         <div class="form-support">
           <span class="support-dot" style="width:5px;height:5px;"></span>
           Suporte 24h disponível para novos usuários
         </div>
-        <div class="fnote">🔒 Sem cartão &nbsp;·&nbsp; Cancele quando quiser &nbsp;·&nbsp; Dados protegidos com AES-256</div>
-      </div>
+
+        <div class="fnote">
+          🔒 Sem cartão &nbsp;·&nbsp; Cancele quando quiser &nbsp;·&nbsp; Dados protegidos com AES-256
+        </div>
+
+      </div><!-- /formContent -->
+
+      <!-- Tela de sucesso (aparece após envio bem-sucedido) *Jp -->
       <div class="fsuccess" id="formSuccess">
         <div class="big">🎉</div>
         <h3>Cadastro realizado!</h3>
         <p id="successMsg" style="margin-bottom:18px;"></p>
-        <p style="margin-bottom:28px;font-size:13px;color:var(--muted);">Seu acesso foi liberado. Nosso suporte 24h está disponível para te ajudar a configurar tudo.</p>
-        <a href="https://nextfinance-wonl.vercel.app/" target="_blank" class="btn-xl" style="margin:0 auto;display:inline-flex;text-decoration:none;">Acessar o NextFinance →</a>
+        <p style="margin-bottom:28px;font-size:13px;color:var(--muted);">
+          Seu acesso foi liberado. Nosso suporte 24h está disponível para te ajudar a configurar tudo.
+        </p>
+        <!-- Redireciona para o app hospedado na Vercel -->
+        <a href="https://nextfinance-wonl.vercel.app/" target="_blank" class="btn-xl" style="margin:0 auto;display:inline-flex;text-decoration:none;">
+          Acessar o NextFinance →
+        </a>
       </div>
-    </div>
+
+    </div><!-- /sform -->
   </div>
+
 </section>
 
-<!-- FOOTER -->
+
+<!-- ── FOOTER ─────────────────────────────────────────────────
+     Logo + copyright + links legais + redes sociais. *leo
+──────────────────────────────────────────────────────────── -->
 <footer>
   <div class="footer-in">
+
+    <!-- Logo no footer -->
     <div class="footer-brand">
       <svg><use href="#nf-logo"/></svg>
       <span class="footer-brand-text">Next<span>Finance</span></span>
     </div>
+
+    <!-- Nota de copyright *Jp -->
     <span class="footer-note">© 2025 NextFinance · Controle financeiro inteligente 🇧🇷 · Suporte 24h</span>
+
+    <!-- Links de política + redes sociais -->
     <div class="footer-links">
       <a href="#">Privacidade</a>
       <a href="#">Termos</a>
       <a href="#">Suporte 24h</a>
+
+      <!-- Ícones de redes sociais *leo -->
       <div class="footer-social">
+
         <a href="#" target="_blank" aria-label="Instagram">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
         </a>
+
         <a href="#" target="_blank" aria-label="LinkedIn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
         </a>
+
+        <!-- WhatsApp no footer *Jp -->
         <a href="https://wa.me/5511999999999" target="_blank" aria-label="WhatsApp">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2.1-.3 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4C8.7 21.5 10.3 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2.1-.3 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4C8.7 21.5 10.3 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/>
+          </svg>
         </a>
-      </div>
+
+      </div><!-- /footer-social -->
     </div>
   </div>
 </footer>
 
-<!-- WHATSAPP FLOATING BUTTON -->
-<a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20NextFinance" target="_blank" class="wpp-float" aria-label="Falar no WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2.1-.3 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4C8.7 21.5 10.3 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+
+<!-- ── BOTÃO FLUTUANTE DO WHATSAPP ────────────────────────────
+     Fica fixo no canto inferior direito.
+     Mensagem pré-preenchida ao clicar. *leo
+──────────────────────────────────────────────────────────── -->
+<a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20NextFinance"
+   target="_blank"
+   class="wpp-float"
+   aria-label="Falar no WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2.1-.3 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4C8.7 21.5 10.3 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/>
+  </svg>
 </a>
 
-<!-- COOKIE BANNER (LGPD) -->
+
+<!-- ── BANNER DE COOKIES (LGPD) ──────────────────────────────
+     Aparece 1,5s após carregar a página se o usuário ainda
+     não aceitou/recusou os cookies (verificado no localStorage). *Jp
+──────────────────────────────────────────────────────────── -->
 <div class="cookie-banner" id="cookieBanner">
   <div class="cookie-text">
-    🍪 Usamos cookies para melhorar sua experiência e cumprir a <strong>LGPD</strong>. Ao continuar navegando, você concorda com nossa <a href="#">Política de Privacidade</a>.
+    🍪 Usamos cookies para melhorar sua experiência e cumprir a <strong>LGPD</strong>.
+    Ao continuar navegando, você concorda com nossa <a href="#">Política de Privacidade</a>.
   </div>
   <div class="cookie-btns">
     <button class="cookie-btn reject" onclick="handleCookies(false)">Recusar</button>
@@ -1112,15 +1215,26 @@ footer{border-top:1px solid var(--border);padding:44px clamp(16px,5vw,60px);}
   </div>
 </div>
 
+
+<!-- ════════════════════════════════════════════════════════════
+     JAVASCRIPT — Toda a interatividade da página
+     Comentado para facilitar a leitura e manutenção *leo
+════════════════════════════════════════════════════════════ -->
 <script>
-// ── HAMBURGER MENU (MOBILE) ──
-const hamburger = document.getElementById('hamburger');
+
+// ── MENU HAMBURGER (MOBILE) ─────────────────────────────────
+// Alterna as classes .open no botão e no painel do menu.
+// Também fecha o menu ao clicar em qualquer link. *Jp
+const hamburger  = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
+
 hamburger.addEventListener('click', () => {
   const open = hamburger.classList.toggle('open');
   mobileMenu.classList.toggle('open', open);
   hamburger.setAttribute('aria-expanded', open);
 });
+
+// Fecha o menu ao clicar em qualquer link dentro dele
 document.querySelectorAll('.mobile-menu a').forEach(a => {
   a.addEventListener('click', () => {
     hamburger.classList.remove('open');
@@ -1129,132 +1243,239 @@ document.querySelectorAll('.mobile-menu a').forEach(a => {
   });
 });
 
-// ── BILLING TOGGLE (MONTHLY / ANNUAL) ──
+
+// ── TOGGLE DE COBRANÇA (MENSAL / ANUAL) ─────────────────────
+// Move a bolha do toggle e atualiza os preços/textos exibidos. *leo
 const billingIndicator = document.getElementById('billingIndicator');
-const btnMonthly = document.getElementById('btnMonthly');
-const btnAnnual = document.getElementById('btnAnnual');
+const btnMonthly       = document.getElementById('btnMonthly');
+const btnAnnual        = document.getElementById('btnAnnual');
 
 function setBilling(mode) {
   const isAnnual = mode === 'annual';
+
+  // Move a bolha do toggle para o lado certo
   billingIndicator.classList.toggle('annual', isAnnual);
   btnMonthly.classList.toggle('active', !isAnnual);
-  btnAnnual.classList.toggle('active', isAnnual);
+  btnAnnual.classList.toggle('active',   isAnnual);
 
+  // Atualiza todos os preços que têm os atributos data-monthly / data-annual
   document.querySelectorAll('.pc-amt').forEach(el => {
     if (el.dataset.monthly && el.dataset.annual) {
       el.textContent = isAnnual ? el.dataset.annual : el.dataset.monthly;
     }
   });
 
-  document.getElementById('proBilled').textContent = isAnnual ? 'R$180/ano · Economia de R$48' : 'Cobrado mensalmente';
-  document.getElementById('famBilled').textContent = isAnnual ? 'R$276/ano · Economia de R$72' : 'Cobrado mensalmente';
-  document.getElementById('btnPro').textContent = isAnnual ? 'Assinar por R$15/mês' : 'Assinar por R$19/mês';
-  document.getElementById('btnFam').textContent = isAnnual ? 'Assinar por R$23/mês' : 'Assinar por R$29/mês';
+  // Atualiza os textos de cobrança e os botões de cada plano *Jp
+  document.getElementById('proBilled').textContent = isAnnual
+    ? 'R$180/ano · Economia de R$48' : 'Cobrado mensalmente';
+  document.getElementById('famBilled').textContent = isAnnual
+    ? 'R$276/ano · Economia de R$72' : 'Cobrado mensalmente';
+  document.getElementById('btnPro').textContent = isAnnual
+    ? 'Assinar por R$15/mês' : 'Assinar por R$19/mês';
+  document.getElementById('btnFam').textContent = isAnnual
+    ? 'Assinar por R$23/mês' : 'Assinar por R$29/mês';
 }
 
-// ── FAQ ──
+
+// ── FAQ (ACCORDION) ─────────────────────────────────────────
+// Array com as perguntas e respostas. Gerado no HTML via map().
+// Abre/fecha pelo max-height para transição suave. *leo
 const faqs = [
-  {q:'O NextFinance é realmente gratuito?', a:'Sim! O plano básico é 100% gratuito e inclui cadastro ilimitado de gastos, calculadora de impacto mensal e painel de análise visual. Sem cartão, sem surpresa, sem prazo de expiração.'},
-  {q:'Preciso conectar minha conta bancária?', a:'Não! O NextFinance funciona sem nenhuma integração bancária. Você cadastra seus gastos manualmente, o que mantém seus dados bancários completamente seguros e privados. Seu banco é só seu.'},
-  {q:'O suporte realmente funciona 24 horas?', a:'Sim! Nossa equipe de suporte está disponível 24 horas por dia, 7 dias por semana, 365 dias por ano. Você pode entrar em contato via chat ao vivo, e-mail ou WhatsApp. No plano Pro, a prioridade é máxima e o tempo médio de resposta é menos de 5 minutos.'},
-  {q:'Como funciona a garantia de 7 dias?', a:'Assinou o plano Pro ou Família e não gostou? Em até 7 dias após a contratação, entre em contato com nosso suporte e devolvemos 100% do valor pago. Sem perguntas, sem burocracia. Simples assim.'},
-  {q:'Meus dados financeiros são seguros?', a:'Absolutamente. Utilizamos criptografia AES-256 — o mesmo padrão dos maiores bancos do Brasil. Seus dados nunca são compartilhados com terceiros e estão em total conformidade com a LGPD.'},
-  {q:'Funciona em celular e computador?', a:'Sim! O NextFinance é totalmente responsivo e funciona perfeitamente em qualquer dispositivo — celular, tablet ou computador — sem precisar baixar nenhum aplicativo. Basta acessar pelo navegador.'},
-  {q:'Como funciona a calculadora de impacto mensal?', a:'Você informa o valor e a frequência do gasto (diário, semanal, mensal, anual...) e a calculadora converte automaticamente para custo por semana, mês, ano e total de parcelas em tempo real. É aí que a maioria das pessoas percebe gastos que nem sabia que tinha.'},
-  {q:'Posso cancelar o plano Pro quando quiser?', a:'Sim, sem fidelidade e sem burocracia. Cancele com 1 clique a qualquer momento pelo painel. Sem multa, sem ligação para central, sem enrolação. Você manda.'}
+  {
+    q: 'O NextFinance é realmente gratuito?',
+    a: 'Sim! O plano básico é 100% gratuito e inclui cadastro ilimitado de gastos, calculadora de impacto mensal e painel de análise visual. Sem cartão, sem surpresa, sem prazo de expiração.'
+  },
+  {
+    q: 'Preciso conectar minha conta bancária?',
+    a: 'Não! O NextFinance funciona sem nenhuma integração bancária. Você cadastra seus gastos manualmente, o que mantém seus dados bancários completamente seguros e privados. Seu banco é só seu.'
+  },
+  {
+    q: 'O suporte realmente funciona 24 horas?',
+    a: 'Sim! Nossa equipe de suporte está disponível 24 horas por dia, 7 dias por semana, 365 dias por ano. Você pode entrar em contato via chat ao vivo, e-mail ou WhatsApp. No plano Pro, a prioridade é máxima e o tempo médio de resposta é menos de 5 minutos.'
+  },
+  {
+    q: 'Como funciona a garantia de 7 dias?',
+    a: 'Assinou o plano Pro ou Família e não gostou? Em até 7 dias após a contratação, entre em contato com nosso suporte e devolvemos 100% do valor pago. Sem perguntas, sem burocracia. Simples assim.'
+  },
+  {
+    q: 'Meus dados financeiros são seguros?',
+    a: 'Absolutamente. Utilizamos criptografia AES-256 — o mesmo padrão dos maiores bancos do Brasil. Seus dados nunca são compartilhados com terceiros e estão em total conformidade com a LGPD.'
+  },
+  {
+    q: 'Funciona em celular e computador?',
+    a: 'Sim! O NextFinance é totalmente responsivo e funciona perfeitamente em qualquer dispositivo — celular, tablet ou computador — sem precisar baixar nenhum aplicativo. Basta acessar pelo navegador.'
+  },
+  {
+    q: 'Como funciona a calculadora de impacto mensal?',
+    a: 'Você informa o valor e a frequência do gasto (diário, semanal, mensal, anual...) e a calculadora converte automaticamente para custo por semana, mês, ano e total de parcelas em tempo real. É aí que a maioria das pessoas percebe gastos que nem sabia que tinha.'
+  },
+  {
+    q: 'Posso cancelar o plano Pro quando quiser?',
+    a: 'Sim, sem fidelidade e sem burocracia. Cancele com 1 clique a qualquer momento pelo painel. Sem multa, sem ligação para central, sem enrolação. Você manda.'
+  }
 ];
-const fw = document.getElementById('faqWrap');
-fw.innerHTML = faqs.map((f,i) => `<div class="fq" id="fq${i}"><button class="fq-btn" onclick="toggleFaq(${i})">${f.q}<span class="fq-ic">+</span></button><div class="fq-a" id="fa${i}"><div class="fq-ai">${f.a}</div></div></div>`).join('');
 
+// Gera o HTML do FAQ dinamicamente *Jp
+const faqWrap = document.getElementById('faqWrap');
+faqWrap.innerHTML = faqs.map((f, i) => `
+  <div class="fq" id="fq${i}">
+    <button class="fq-btn" onclick="toggleFaq(${i})">
+      ${f.q}
+      <span class="fq-ic">+</span>
+    </button>
+    <div class="fq-a" id="fa${i}">
+      <div class="fq-ai">${f.a}</div>
+    </div>
+  </div>
+`).join('');
+
+// Abre ou fecha o item do FAQ clicado *leo
 function toggleFaq(i) {
-  const fq = document.getElementById('fq'+i), fa = document.getElementById('fa'+i);
+  const fq = document.getElementById('fq' + i);
+  const fa = document.getElementById('fa' + i);
   const open = fq.classList.toggle('open');
-  fa.style.maxHeight = open ? fa.scrollHeight+'px' : '0';
+  // max-height animada: 0 quando fechado, altura real quando aberto
+  fa.style.maxHeight = open ? fa.scrollHeight + 'px' : '0';
 }
 
-// ── FEATURES ──
+
+// ── SELEÇÃO DE FEATURE ATIVA ─────────────────────────────────
+// Remove .on de todas e adiciona só na clicada. *Jp
 function setFeat(i) {
-  document.querySelectorAll('.fi').forEach((el,j) => el.classList.toggle('on', j===i));
+  document.querySelectorAll('.fi').forEach((el, j) => {
+    el.classList.toggle('on', j === i);
+  });
 }
 
-// ── FORM ──
+
+// ── FORMULÁRIO DE CADASTRO ───────────────────────────────────
+// Valida os campos, salva lead no localStorage e exibe sucesso. *leo
 function submitForm() {
-  const name = document.getElementById('sName').value.trim();
+  const name  = document.getElementById('sName').value.trim();
   const email = document.getElementById('sEmail').value.trim();
   const phone = document.getElementById('sPhone').value.trim();
-  const lgpd = document.getElementById('lgpdCheck').checked;
-  const err = document.getElementById('fErr');
-  err.style.display = 'none';
-  if(!name){ showErr('Por favor, informe seu nome.'); return; }
-  if(!email){ showErr('Por favor, informe seu e-mail.'); return; }
-  if(!email.includes('@')){ showErr('E-mail inválido. Verifique e tente novamente.'); return; }
-  if(!lgpd){ showErr('Você precisa aceitar a Política de Privacidade para continuar.'); return; }
+  const lgpd  = document.getElementById('lgpdCheck').checked;
+
+  // Limpa erro anterior
+  document.getElementById('fErr').style.display = 'none';
+
+  // Validações básicas *Jp
+  if (!name)               { showErr('Por favor, informe seu nome.');                              return; }
+  if (!email)              { showErr('Por favor, informe seu e-mail.');                            return; }
+  if (!email.includes('@')){ showErr('E-mail inválido. Verifique e tente novamente.');             return; }
+  if (!lgpd)               { showErr('Você precisa aceitar a Política de Privacidade para continuar.'); return; }
+
+  // Feedback visual de carregamento
   const btn = document.getElementById('fBtn');
-  btn.textContent = 'Criando sua conta...';
+  btn.textContent  = 'Criando sua conta...';
   btn.style.opacity = '.7';
-  btn.disabled = true;
-  try { localStorage.setItem('nf_leads', JSON.stringify([{id:Date.now(),name,email,phone,lgpd:true,date:new Date().toISOString()}])); } catch(e) {}
+  btn.disabled     = true;
+
+  // Salva o lead no localStorage (captura de lead simples) *leo
+  try {
+    localStorage.setItem('nf_leads', JSON.stringify([{
+      id: Date.now(), name, email, phone, lgpd: true, date: new Date().toISOString()
+    }]));
+  } catch(e) { /* Continua mesmo se o localStorage estiver bloqueado */ }
+
+  // Simula processamento e exibe tela de sucesso após 1,6s
   setTimeout(() => {
     document.getElementById('formContent').style.display = 'none';
-    const s = document.getElementById('formSuccess');
-    s.style.display = 'block';
+    const successDiv = document.getElementById('formSuccess');
+    successDiv.style.display = 'block';
     document.getElementById('successMsg').textContent = `Bem-vindo(a), ${name}! Sua conta foi criada com sucesso.`;
-    btn.textContent = 'Criar minha conta grátis →';
+    // Restaura o botão (caso o usuário volte)
+    btn.textContent  = 'Criar minha conta grátis →';
     btn.style.opacity = '1';
-    btn.disabled = false;
+    btn.disabled     = false;
   }, 1600);
 }
 
+// Exibe mensagem de erro por 4 segundos *Jp
 function showErr(msg) {
   const e = document.getElementById('fErr');
-  e.textContent = msg;
-  e.style.display = 'block';
-  setTimeout(() => { e.style.display='none'; }, 4000);
+  e.textContent    = msg;
+  e.style.display  = 'block';
+  setTimeout(() => { e.style.display = 'none'; }, 4000);
 }
 
-// ── COOKIE BANNER (LGPD) ──
+
+// ── BANNER DE COOKIES ────────────────────────────────────────
+// Salva a escolha no localStorage e esconde o banner. *leo
 function handleCookies(accepted) {
-  try { localStorage.setItem('nf_cookies', accepted ? 'accepted' : 'rejected'); } catch(e) {}
+  try {
+    localStorage.setItem('nf_cookies', accepted ? 'accepted' : 'rejected');
+  } catch(e) {}
   document.getElementById('cookieBanner').classList.remove('show');
 }
+
+// Mostra o banner após 1,5s se ainda não houve resposta *Jp
 window.addEventListener('load', () => {
   try {
     if (!localStorage.getItem('nf_cookies')) {
-      setTimeout(() => document.getElementById('cookieBanner').classList.add('show'), 1500);
+      setTimeout(() => {
+        document.getElementById('cookieBanner').classList.add('show');
+      }, 1500);
     }
   } catch(e) {}
 });
 
-// ── REVEAL ON SCROLL ──
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
-}, {threshold:0.08});
-document.querySelectorAll('.rv,.rv2,.rv3').forEach(el => obs.observe(el));
 
-// ── SCROLL COUNTER ANIMATION ──
+// ── ANIMAÇÃO DE ENTRADA (REVEAL ON SCROLL) ───────────────────
+// IntersectionObserver adiciona .vis quando o elemento entra
+// na viewport. O CSS então anima a opacidade e posição. *leo
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('vis');
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.rv, .rv2, .rv3').forEach(el => revealObserver.observe(el));
+
+
+// ── CONTADOR ANIMADO NAS ESTATÍSTICAS DO HERO ─────────────────
+// Faz os números contarem de 0 até o valor real ao entrar na tela.
+// Usa easing cúbico para suavizar a aceleração. *Jp
 function animateCounters() {
   document.querySelectorAll('.hstat-n').forEach(el => {
-    const text = el.textContent;
-    const num = parseFloat(text.replace(/[^\d.]/g,''));
-    if(isNaN(num)) return;
-    const prefix = text.match(/^[^\d]*/)?.[0]||'';
-    const suffix = text.slice((prefix+num).length)||text.match(/[^\d.]+$/)?.[0]||'';
-    let start = 0, duration = 1600, step = 16;
+    const text   = el.textContent;
+    const num    = parseFloat(text.replace(/[^\d.]/g, ''));
+    if (isNaN(num)) return;
+
+    const prefix   = text.match(/^[^\d]*/)?.[0]  || '';
+    const suffix   = text.slice((prefix + num).length) || text.match(/[^\d.]+$/)?.[0] || '';
+    let start      = 0;
+    const duration = 1600;
+    const step     = 16;
+
     const interval = setInterval(() => {
       start += step;
-      const progress = Math.min(start/duration,1);
-      const eased = 1-Math.pow(1-progress,3);
-      const current = (num * eased);
-      el.textContent = prefix + (num >= 100 ? Math.round(current).toLocaleString('pt-BR') : current.toFixed(num%1!==0?1:0)) + suffix;
-      if(start >= duration) clearInterval(interval);
-    }, 16);
+      const progress = Math.min(start / duration, 1);
+      const eased    = 1 - Math.pow(1 - progress, 3); // ease out cubic
+      const current  = num * eased;
+
+      // Formata com separador de milhar se número >= 100
+      el.textContent = prefix
+        + (num >= 100 ? Math.round(current).toLocaleString('pt-BR') : current.toFixed(num % 1 !== 0 ? 1 : 0))
+        + suffix;
+
+      if (start >= duration) clearInterval(interval);
+    }, step);
   });
 }
-const heroObs = new IntersectionObserver(entries => {
-  if(entries[0].isIntersecting){ animateCounters(); heroObs.disconnect(); }
-}, {threshold:0.5});
-const stats = document.querySelector('.hero-stats');
-if(stats) heroObs.observe(stats);
+
+// Dispara o contador quando os stats do hero entram na viewport *leo
+const heroStatsObserver = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting) {
+    animateCounters();
+    heroStatsObserver.disconnect(); // Só roda uma vez
+  }
+}, { threshold: 0.5 });
+
+const statsEl = document.querySelector('.hero-stats');
+if (statsEl) heroStatsObserver.observe(statsEl);
+
 </script>
+
 </body>
 </html>
